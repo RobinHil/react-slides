@@ -22,3 +22,4 @@ jobs:
           git status
           npm install
           npm run build
+          cd
