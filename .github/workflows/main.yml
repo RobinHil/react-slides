@@ -16,7 +16,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd /var/www/test.robinh.fr/
+          cd /var/www/test.robinh.fr/react-slides/
           git restore *
           git pull origin main
           git status
