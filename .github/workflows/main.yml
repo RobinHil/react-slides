@@ -22,4 +22,5 @@ jobs:
           git status
           npm install
           npm run build
+          cp -r public dist/public
           rsync -r dist/* /var/www/test.robinh.fr/
