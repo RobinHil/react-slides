@@ -17,9 +17,7 @@ jobs:
         port: 22
         script: |
           cd /tmp_sites/react-slides/
-          git restore *
           git pull origin main
-          git status
           npm install
           npm run build
           cp -r public dist/public
