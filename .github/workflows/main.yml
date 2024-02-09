@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: debian12
+    runs-on: ubuntu-latest
     steps:
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
@@ -16,9 +16,9 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd /var/www/test.robinh.fr/
-          git restore *
+          cd /tmp_sites/react-slides/
           git pull origin main
-          git status
           npm install
           npm run build
+          cp -r public dist/public
+          rsync -r dist/* /var/www/test.robinh.fr/
