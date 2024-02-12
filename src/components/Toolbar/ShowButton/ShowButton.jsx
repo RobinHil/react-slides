@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FontAwesomeIcon from "../FontAwesomeIcon/FontAwesomeIcon.jsx";
+import FontAwesomeIcon from "../../FontAwesomeIcon/FontAwesomeIcon.jsx";
 
 function ShowButton() {
     const [isVisible, setVisible] = useState(true);
