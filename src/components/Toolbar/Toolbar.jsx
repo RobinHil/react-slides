@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Navbar() {
+function Toolbar() {
     return (
         <div className="bg-white shadow-lg rounded-full p-3 m-4 flex justify-between items-center">
             <h1 className="text-lg font-semibold text-gray-800">React Slides</h1>
@@ -92,4 +92,4 @@ function SlideCounter({ limit }) {
     );
 }
 
-export default Navbar;
+export default Toolbar;
