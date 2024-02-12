@@ -1,5 +1,5 @@
 import SlidesNav from './SlidesNav/SlidesNav.jsx';
-import ShowButton from './ShowButton.jsx';
+import ShowButton from './ShowButton/ShowButton.jsx';
 
 function Toolbar() {
     return (
