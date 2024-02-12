@@ -1,11 +1,11 @@
-import Navbar from './components/navbar/Navbar.jsx'
+import Toolbar from './components/Toolbar/Toolbar.jsx';
 
 function App() {
-  return (
-    <>
-      <Navbar />
-    </>
-  )
+    return (
+        <>
+            <Toolbar />
+        </>
+    );
 }
 
-export default App
+export default App;
