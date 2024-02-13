@@ -12,7 +12,7 @@ function ShowButton() {
     
     return (
         <div className="relative inline-block">
-            <button onClick={handleClick} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover} className="text-gray-600 transition ease-in-out delay-50 hover:text-gray-700 hover:bg-gray-300 py-2 px-3 rounded-full">
+            <button onClick={handleClick} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover} className="text-gray-600 transition ease-in-out delay-50 hover:text-gray-700 hover:bg-gray-300 py-2 px-3 rounded-full outline-none">
                 {isVisible
                     ? <FontAwesomeIcon icon={"fa-eye"} />
                     : <FontAwesomeIcon icon={"fa-eye-slash"} size={"text-lg"} />
