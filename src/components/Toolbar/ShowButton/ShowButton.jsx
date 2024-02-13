@@ -19,7 +19,7 @@ function ShowButton() {
                 }
             </button>
             {isHovered && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded-md">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded-md bg-opacity-75">
                     {isVisible
                         ? 'Hide slide numbers'
                         : 'Show slide numbers'

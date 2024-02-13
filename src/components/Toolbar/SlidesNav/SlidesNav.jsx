@@ -13,7 +13,7 @@ function SlidesNav() {
             <NavButton onNavButtonClick={handleDecrement}>
                 <FontAwesomeIcon icon={"fa-caret-left"} />
             </NavButton>
-            <input className="w-1/3 text-center bg-white font-semibold text-md text-gray-700 transition ease-in-out delay-50 hover:text-gray-800 hover:bg-gray-300 rounded-lg outline-none focus:outline-none" value={count} onChange={(e) => handleChange(parseInt(e.target.value))} />
+            <input className="w-1/3 text-center bg-white font-semibold text-md text-gray-700 transition ease-in-out delay-50 hover:text-gray-800 hover:bg-gray-300 rounded-lg outline-none" value={count} onChange={(e) => handleChange(parseInt(e.target.value))} />
             <NavButton onNavButtonClick={handleIncrement}>
                 <FontAwesomeIcon icon={"fa-caret-right"} />
             </NavButton>
