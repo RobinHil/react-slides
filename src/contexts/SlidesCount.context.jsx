@@ -46,6 +46,7 @@ function SlidesCountProvider({ children }) {
                 handleIncrement,
                 handleFirst,
                 handleLast,
+                maxSlide,
                 setMaxSlide
             }}
         >
