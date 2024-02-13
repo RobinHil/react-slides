@@ -1,13 +1,14 @@
 import { createContext, useContext, useState } from 'react';
 
-const SlidesCountContext = createContext();
+const SlidesCountContext = createContext(null);
 
 function useSlidesCount() {
     return useContext(SlidesCountContext);
 }
 
-function SlidesCountProvider({ children, maxSlide }) {
+function SlidesCountProvider({ children }) {
     const [count, setCount] = useState(1);
+    const [maxSlide, setMaxSlide] = useState(1);
 
     const handleChange = (value) => {
         if (!isNaN(value)) {
@@ -45,7 +46,7 @@ function SlidesCountProvider({ children, maxSlide }) {
                 handleIncrement,
                 handleFirst,
                 handleLast,
-                maxSlide
+                setMaxSlide
             }}
         >
             {children}
