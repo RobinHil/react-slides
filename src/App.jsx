@@ -3,31 +3,40 @@ import SlideViewer from './components/SlideViewer/SlideViewer.jsx'
 import { useSlidesCount } from './contexts/SlidesCount.context.jsx';
 import { ShowSlidesNumberProvider } from './contexts/ShowSlidesNumber.context.jsx';
 import { useEffect } from 'react';
+import ExitFullScreenButton from './components/ExitFullScreenButton/ExitFullScreenButton.jsx';
 
 function App() {
     const {setMaxSlide, handleDecrement, handleIncrement, handleFirst, handleLast} = useSlidesCount();
     setMaxSlide(9);
 
     useEffect(() => {
-        function handleKeyPress(event) {
-            if (event.keyCode === 39)
-                handleIncrement();
-            else if (event.keyCode === 37)
-                handleDecrement();
-            else if (event.keyCode === 38)
-                handleLast();
-            else if (event.keyCode === 40)
-                handleFirst();
-            else if (event.keyCode === 32)
-                handleIncrement();
-            else
-                return;
+        function handleKeyDown(event) {
+            switch (event.keyCode) {
+                case 39:
+                    handleIncrement();
+                    break;
+
+                case 37:
+                    handleDecrement();
+                    break;
+
+                case 38:
+                    handleLast();
+                    break;
+
+                case 40:
+                    handleFirst();
+                    break;
+            
+                default:
+                    break;
+            }
         }
 
-        window.addEventListener('keydown', handleKeyPress);
+        window.addEventListener('keydown', handleKeyDown);
     
         return () => {
-            window.removeEventListener('keydown', handleKeyPress);
+            window.removeEventListener('keydown', handleKeyDown);
         };
     }, [handleDecrement, handleIncrement, handleFirst, handleLast]);
 
@@ -42,6 +51,7 @@ function App() {
                         </div>
                     </SlideViewer>
                 </div>
+                <ExitFullScreenButton />
             </div>
         </ShowSlidesNumberProvider>
     );
