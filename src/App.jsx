@@ -10,15 +10,18 @@ function App() {
 
     useEffect(() => {
         function handleKeyPress(event) {
-            if (event.keyCode === 39) { // Flèche droite
+            if (event.keyCode === 39)
                 handleIncrement();
-            } else if (event.keyCode === 37) { // Flèche gauche
+            else if (event.keyCode === 37)
                 handleDecrement();
-            } else if (event.keyCode === 38) { // Flèche haut
+            else if (event.keyCode === 38)
                 handleLast();
-            } else if (event.keyCode === 40) { // Flèche bas
+            else if (event.keyCode === 40)
                 handleFirst();
-            }
+            else if (event.keyCode === 32)
+                handleIncrement();
+            else
+                return;
         }
 
         window.addEventListener('keydown', handleKeyPress);
@@ -26,7 +29,7 @@ function App() {
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-    }, []);
+    }, [handleDecrement, handleIncrement, handleFirst, handleLast]);
 
     return (
         <ShowSlidesNumberProvider>
