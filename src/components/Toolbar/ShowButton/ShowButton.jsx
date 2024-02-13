@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import FontAwesomeIcon from "../../FontAwesomeIcon/FontAwesomeIcon.jsx";
+import { useShowSlidesNumber } from '../../../contexts/ShowSlidesNumber.context.jsx';
 
 function ShowButton() {
-    const [isVisible, setVisible] = useState(true);
+    const { isVisible, handleClick } = useShowSlidesNumber();
     const [isHovered, setIsHovered] = useState(false);
-
-    const handleClick = () => {
-        setVisible(!isVisible);
-    };
 
     const handleMouseHover = () => {
         setIsHovered(!isHovered);
