@@ -6,7 +6,7 @@ function SlideViewer({ children }) {
     const { isVisible } = useShowSlidesNumber();
 
     return (
-        <div className="flex justify-center items-center h-full">
+        <div className="flex items-center h-full pb-4">
             <div className="bg-white p-4 shadow-2xl rounded-xl h-full w-full border m-4">
                 {children}
                 {isVisible && (
