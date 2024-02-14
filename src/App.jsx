@@ -1,9 +1,9 @@
-import Toolbar from './components/Toolbar/Toolbar.jsx';
-import SlideViewer from './components/SlideViewer/SlideViewer.jsx'
+import Toolbar from './components/page/Toolbar.jsx';
+import SlideViewer from './components/page/SlideViewer.jsx'
 import { useSlidesCount } from './contexts/SlidesCount.context.jsx';
 import { ShowSlidesNumberProvider } from './contexts/ShowSlidesNumber.context.jsx';
 import { useEffect } from 'react';
-import ExitFullScreenButton from './components/ExitFullScreenButton/ExitFullScreenButton.jsx';
+import ExitFullScreenButton from './components/page/ExitFullScreenButton.jsx';
 import { FullScreenProvider } from './contexts/FullScreen.context.jsx';
 
 function App() {

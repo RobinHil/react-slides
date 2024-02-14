@@ -1,6 +1,6 @@
-import SlidesNav from './SlidesNav/SlidesNav.jsx';
-import ShowSlidesNumberButton from './ShowSlidesNumberButton/ShowSlidesNumberButton.jsx';
-import FullScreenButton from '../FullScreenButton/FullScreenButton.jsx';
+import SlidesNav from './SlidesNav.jsx';
+import ShowSlidesNumberButton from './ShowSlidesNumberButton.jsx';
+import FullScreenButton from './FullScreenButton.jsx';
 
 function Toolbar() {
     return (

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import FontAwesomeIcon from "../FontAwesomeIcon/FontAwesomeIcon.jsx";
+import FontAwesomeIcon from "./FontAwesomeIcon.jsx";
 import { useFullScreen } from '../../contexts/FullScreen.context.jsx';
 
 function FullScreenButton() {
