@@ -4,6 +4,7 @@ import { useSlidesCount } from './contexts/SlidesCount.context.jsx';
 import { ShowSlidesNumberProvider } from './contexts/ShowSlidesNumber.context.jsx';
 import { useEffect } from 'react';
 import ExitFullScreenButton from './components/ExitFullScreenButton/ExitFullScreenButton.jsx';
+import { FullScreenProvider } from './contexts/FullScreen.context.jsx';
 
 function App() {
     const {setMaxSlide, handleDecrement, handleIncrement, handleFirst, handleLast} = useSlidesCount();
@@ -42,6 +43,7 @@ function App() {
 
     return (
         <ShowSlidesNumberProvider>
+        <FullScreenProvider>
             <div className="flex flex-col h-screen">
                 <Toolbar />
                 <SlideViewer>
@@ -51,6 +53,7 @@ function App() {
                 </SlideViewer>
                 <ExitFullScreenButton />
             </div>
+        </FullScreenProvider>
         </ShowSlidesNumberProvider>
     );
 }
