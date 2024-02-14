@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import FontAwesomeIcon from "../../FontAwesomeIcon/FontAwesomeIcon.jsx";
-import { useShowSlidesNumber } from '../../../contexts/ShowSlidesNumber.context.jsx';
+import FontAwesomeIcon from "./FontAwesomeIcon.jsx";
+import { useShowSlidesNumber } from '../../contexts/ShowSlidesNumber.context.jsx';
 
 function ShowSlidesNumberButton() {
     const { isVisible, handleClick } = useShowSlidesNumber();

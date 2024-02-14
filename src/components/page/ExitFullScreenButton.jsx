@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FontAwesomeIcon from "../FontAwesomeIcon/FontAwesomeIcon";
+import FontAwesomeIcon from "./FontAwesomeIcon";
 import { useFullScreen } from "../../contexts/FullScreen.context";
 
 function ExitFullScreenButton() {

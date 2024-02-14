@@ -1,6 +1,6 @@
 import NavButton from './NavButton.jsx';
-import FontAwesomeIcon from '../../FontAwesomeIcon/FontAwesomeIcon.jsx';
-import { useSlidesCount } from '../../../contexts/SlidesCount.context.jsx';
+import FontAwesomeIcon from './FontAwesomeIcon.jsx';
+import { useSlidesCount } from '../../contexts/SlidesCount.context.jsx';
 
 function SlidesNav() {
     const { count, handleChange, handleDecrement, handleIncrement, handleFirst, handleLast } = useSlidesCount();
