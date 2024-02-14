@@ -9,7 +9,7 @@ function useShowSlidesNumber() {
 function ShowSlidesNumberProvider({ children }) {
     const [isVisible, setVisible] = useState(true);
 
-    const handleClick = () => {
+    const toggleVisible = () => {
         setVisible(!isVisible);
     };
 
@@ -17,7 +17,7 @@ function ShowSlidesNumberProvider({ children }) {
         <ShowSlidesNumberContext.Provider
             value={{
                 isVisible,
-                handleClick
+                toggleVisible
             }}
         >
             {children}

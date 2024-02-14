@@ -6,11 +6,11 @@ function useSlidesCount() {
     return useContext(SlidesCountContext);
 }
 
-function SlidesCountProvider({ children }) {
+function SlidesCountProvider({ children, max=1 }) {
     const [count, setCount] = useState(1);
-    const [maxSlide, setMaxSlide] = useState(1);
+    const [maxSlide, setMaxSlide] = useState(max);
 
-    const handleChange = (value) => {
+    const changeSlidesCount = (value) => {
         if (!isNaN(value)) {
             if (value>maxSlide)
                 setCount(maxSlide);
@@ -21,19 +21,19 @@ function SlidesCountProvider({ children }) {
         }
     };
 
-    const handleDecrement = () => {
-        setCount(count-1<1?maxSlide:count-1);
+    const decrementSlidesCount = () => {
+        setCount(count-1<1?1:count-1);
     };
 
-    const handleIncrement = () => {
+    const incrementSlidesCount = () => {
         setCount(count+1>maxSlide?maxSlide:count+1);
     };
 
-    const handleFirst = () => {
+    const firstSlidesCount = () => {
         setCount(1);
     };
 
-    const handleLast = () => {
+    const lastSlidesCount = () => {
         setCount(maxSlide);
     };
 
@@ -41,11 +41,11 @@ function SlidesCountProvider({ children }) {
         <SlidesCountContext.Provider
             value={{
                 count,
-                handleChange,
-                handleDecrement,
-                handleIncrement,
-                handleFirst,
-                handleLast,
+                changeSlidesCount,
+                decrementSlidesCount,
+                incrementSlidesCount,
+                firstSlidesCount,
+                lastSlidesCount,
                 maxSlide,
                 setMaxSlide
             }}
