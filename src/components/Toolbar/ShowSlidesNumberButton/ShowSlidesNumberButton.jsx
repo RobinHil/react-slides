@@ -2,7 +2,7 @@ import { useState } from 'react';
 import FontAwesomeIcon from "../../FontAwesomeIcon/FontAwesomeIcon.jsx";
 import { useShowSlidesNumber } from '../../../contexts/ShowSlidesNumber.context.jsx';
 
-function ShowButton() {
+function ShowSlidesNumberButton() {
     const { isVisible, handleClick } = useShowSlidesNumber();
     const [isHovered, setIsHovered] = useState(false);
 
@@ -30,4 +30,4 @@ function ShowButton() {
     );
 }
 
-export default ShowButton;
+export default ShowSlidesNumberButton;
