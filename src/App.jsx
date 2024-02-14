@@ -1,47 +1,14 @@
 import Toolbar from './components/interface/Toolbar.jsx';
 import SlideViewer from './components/interface/SlideViewer.jsx'
-import { useSlidesCount } from './contexts/SlidesCount.context.jsx';
+import { SlidesCountProvider } from './contexts/SlidesCount.context.jsx';
 import { ShowSlidesNumberProvider } from './contexts/ShowSlidesNumber.context.jsx';
-import { useEffect } from 'react';
 import ExitFullScreenButton from './components/interface/ExitFullScreenButton.jsx';
 import { FullScreenProvider } from './contexts/FullScreen.context.jsx';
 
 function App() {
-    const {setMaxSlide, handleDecrement, handleIncrement, handleFirst, handleLast} = useSlidesCount();
-    setMaxSlide(99);
-
-    useEffect(() => {
-        function handleKeyDown(event) {
-            switch (event.keyCode) {
-                case 39:
-                    handleIncrement();
-                    break;
-
-                case 37:
-                    handleDecrement();
-                    break;
-
-                case 38:
-                    handleLast();
-                    break;
-
-                case 40:
-                    handleFirst();
-                    break;
-            
-                default:
-                    break;
-            }
-        }
-
-        window.addEventListener('keydown', handleKeyDown);
-    
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [handleDecrement, handleIncrement, handleFirst, handleLast]);
 
     return (
+        <SlidesCountProvider max={99}>
         <ShowSlidesNumberProvider>
         <FullScreenProvider>
             <div className="flex flex-col h-screen">
@@ -55,6 +22,7 @@ function App() {
             </div>
         </FullScreenProvider>
         </ShowSlidesNumberProvider>
+        </SlidesCountProvider>
     );
 }
 
