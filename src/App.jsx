@@ -7,7 +7,7 @@ import ExitFullScreenButton from './components/ExitFullScreenButton/ExitFullScre
 
 function App() {
     const {setMaxSlide, handleDecrement, handleIncrement, handleFirst, handleLast} = useSlidesCount();
-    setMaxSlide(9);
+    setMaxSlide(99);
 
     useEffect(() => {
         function handleKeyDown(event) {
@@ -44,13 +44,11 @@ function App() {
         <ShowSlidesNumberProvider>
             <div className="flex flex-col h-screen">
                 <Toolbar />
-                <div className="flex-grow">
-                    <SlideViewer>
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold mb-4">Bienvenue sur notre plateforme de présentation</h2>
-                        </div>
-                    </SlideViewer>
-                </div>
+                <SlideViewer>
+                    <div className="text-center">
+                        <h2 className="text-3xl font-bold mb-4">Bienvenue sur notre plateforme de présentation</h2>
+                    </div>
+                </SlideViewer>
                 <ExitFullScreenButton />
             </div>
         </ShowSlidesNumberProvider>
