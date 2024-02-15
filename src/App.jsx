@@ -53,8 +53,9 @@ Nullam sit amet lectus vestibulum, luctus sem sit amet, euismod risus. Fusce id 
 
 Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac nulla interdum, pharetra turpis vitae, blandit nibh. Curabitur sit amet sapien eu turpis commodo imperdiet. Morbi pellentesque ornare neque, quis maximus sapien aliquet id. Curabitur scelerisque tellus magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent dapibus justo et velit vulputate, ac pretium ligula tempor. Nunc vitae aliquet metus, quis mattis purus. Fusce sollicitudin venenatis efficitur.
                         </Paragraph>
-                        <Image src="/favicon.svg" alt="Une image" />
-                        <Image src="/favicon.svg" alt="Une image2">
+                        <Image src="/favicon.svg" alt="Une image" align="center" />
+                        <Image src="/favicon.svg" alt="Une image2" align="end" />
+                        <Image src="/favicon.svg" alt="Une image avec légende">
                             lala lala la légende
                         </Image>
                         <br/>
