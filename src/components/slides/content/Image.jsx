@@ -1,7 +1,7 @@
 function Image({ children, src="", alt="", align="start" }) {
-    const style = `flex flex-col items-${align}`;
+    const combinedStyle = `flex flex-col items-${align}`;
     return (
-        <div className={style}>
+        <div className={combinedStyle}>
             <div>
                 <img src={src} alt={alt} />
                 {children && (
