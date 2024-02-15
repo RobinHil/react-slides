@@ -57,8 +57,9 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
                         <Image src="/favicon.svg" alt="Une image2">
                             lala lala la légende
                         </Image>
+                        <br/>
                         <List list={ ["test", "de", "bulleted", "list"] } />
-                        <br></br>
+                        <br/>
                         <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
                     </Slide>
                 </SlideViewer>
