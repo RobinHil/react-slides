@@ -1,42 +1,10 @@
 import SlidesNavButton from './SlidesNavButton.jsx';
 import FontAwesomeIcon from './FontAwesomeIcon.jsx';
 import { useSlidesCount } from '../../contexts/SlidesCount.context.jsx';
-import { useEffect } from 'react';
+
 
 function SlidesNav() {
     const { count, changeSlidesCount, decrementSlidesCount, incrementSlidesCount, firstSlidesCount, lastSlidesCount } = useSlidesCount();
-
-    useEffect(() => {
-        function handleKeyDown(event) {
-            switch (event.keyCode) {
-                case 39: {
-                    incrementSlidesCount();
-                    break;
-                }
-                case 37: {
-                    decrementSlidesCount();
-                    break;
-                }
-                case 38: {
-                    lastSlidesCount();
-                    break;
-                }
-                case 40: {
-                    firstSlidesCount();
-                    break;
-                }
-                default: {
-                    break;
-                }
-            }
-        }
-
-        window.addEventListener('keydown', handleKeyDown);
-    
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [decrementSlidesCount, incrementSlidesCount, firstSlidesCount, lastSlidesCount]);
 
     return (
         <div className="flex bg-white rounded-lg w-64">

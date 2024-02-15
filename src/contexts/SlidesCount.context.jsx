@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const SlidesCountContext = createContext(null);
 
@@ -36,6 +36,38 @@ function SlidesCountProvider({ children, max=1 }) {
     const lastSlidesCount = () => {
         setCount(maxSlide);
     };
+
+    useEffect(() => {
+        function handleKeyDown(event) {
+            switch (event.keyCode) {
+                case 39: {
+                    incrementSlidesCount();
+                    break;
+                }
+                case 37: {
+                    decrementSlidesCount();
+                    break;
+                }
+                case 38: {
+                    lastSlidesCount();
+                    break;
+                }
+                case 40: {
+                    firstSlidesCount();
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+    
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [decrementSlidesCount, incrementSlidesCount, firstSlidesCount, lastSlidesCount]);
 
     return (
         <SlidesCountContext.Provider
