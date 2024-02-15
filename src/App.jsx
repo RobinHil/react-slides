@@ -5,7 +5,6 @@ import { ShowSlidesNumberProvider } from './contexts/ShowSlidesNumber.context.js
 import ExitFullScreenButton from './components/interface/ExitFullScreenButton.jsx';
 import { FullScreenProvider } from './contexts/FullScreen.context.jsx';
 import Heading from './components/slides/content/Heading.jsx';
-import Subheading from './components/slides/content/Subheading.jsx';
 import Slide from './components/slides/Slide.jsx';
 import Paragraph from './components/slides/content/Paragraph.jsx';
 import Image from './components/slides/content/Image.jsx';
@@ -21,8 +20,8 @@ function App() {
                 <Toolbar />
                 <SlideViewer>
                     <Slide>
-                        <Heading>Titre</Heading>
-                        <Subheading>Sous-titre</Subheading>
+                        <Heading align="center">Titre</Heading>
+                        <Heading fontSize="3xl">Sous-titre</Heading>
                         <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lorem velit. Aliquam sodales sed mi non commodo. Nunc rhoncus ligula id dui euismod aliquet ut id mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vulputate vestibulum urna. Curabitur justo mauris, interdum a tellus ut, vulputate bibendum turpis. Sed imperdiet suscipit felis sed fermentum. Quisque vestibulum congue mauris nec varius. Aliquam tempus, nisl tincidunt condimentum luctus, est mi posuere nisl, sed dictum tortor justo vitae velit. Nam tristique lobortis metus, eu tristique diam ultricies quis. Cras ullamcorper eros quis mauris accumsan, vitae lobortis tellus congue. Donec eu metus et urna pulvinar faucibus. Vivamus id nunc vitae eros eleifend feugiat id varius justo. Praesent vitae feugiat nibh.
 
 Mauris ultrices posuere tellus id vehicula. Nam lectus ligula, congue quis laoreet eget, vehicula at lorem. Etiam vel pretium mauris. Ut et orci non enim hendrerit maximus. Praesent commodo vehicula elementum. Curabitur et bibendum lacus. Quisque magna tellus, egestas a hendrerit ac, finibus vitae nibh. Maecenas consequat lacus eget egestas tincidunt. Praesent eget efficitur diam.
