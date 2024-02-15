@@ -9,6 +9,7 @@ import Subheading from './components/slides/content/Subheading.jsx';
 import Slide from './components/slides/Slide.jsx';
 import Paragraph from './components/slides/content/Paragraph.jsx';
 import Image from './components/slides/content/Image.jsx';
+import List from './components/slides/content/List.jsx';
 
 function App() {
 
@@ -52,10 +53,13 @@ Nullam sit amet lectus vestibulum, luctus sem sit amet, euismod risus. Fusce id 
 
 Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac nulla interdum, pharetra turpis vitae, blandit nibh. Curabitur sit amet sapien eu turpis commodo imperdiet. Morbi pellentesque ornare neque, quis maximus sapien aliquet id. Curabitur scelerisque tellus magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent dapibus justo et velit vulputate, ac pretium ligula tempor. Nunc vitae aliquet metus, quis mattis purus. Fusce sollicitudin venenatis efficitur.
                         </Paragraph>
-                        <Image src="../public/favicon.svg" alt="Une image" />
-                        <Image src="../public/favicon.svg" alt="Une image2">
+                        <Image src="/favicon.svg" alt="Une image" />
+                        <Image src="/favicon.svg" alt="Une image2">
                             lala lala la légende
                         </Image>
+                        <List list={ ["test", "de", "bulleted", "list"] } />
+                        <br></br>
+                        <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
                     </Slide>
                 </SlideViewer>
                 <ExitFullScreenButton />
