@@ -1,8 +1,9 @@
-function List({ list=[], type="bulleted" }) {
+function List({ list=[], type="bulleted", fontSize="md" }) {
     switch (type) {
         case "bulleted": {
+            const combinedStyle = `list-disc text-black text-${fontSize}`;
             return (
-                <ul className="list-disc text-black text-md">
+                <ul className={combinedStyle}>
                     {list.map(entry => (
                         <li>{entry}</li>
                     ))}
@@ -10,8 +11,9 @@ function List({ list=[], type="bulleted" }) {
             );
         }
         case "numbered": {
+            const combinedStyle = `list-decimal text-black text-${fontSize}`;
             return (
-                <ol className="list-decimal text-black text-md">
+                <ol className={combinedStyle}>
                     {list.map(entry => (
                         <li>{entry}</li>
                     ))}
