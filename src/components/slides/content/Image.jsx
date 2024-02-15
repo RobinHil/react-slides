@@ -1,16 +1,14 @@
-function Image({ children, src="", alt="" }) {
+function Image({ children, src="", alt="", align="start" }) {
+    const style = `flex flex-col items-${align}`;
     return (
-    <>
-        {!children
-            ? <img src={src} alt={alt} />
-            : (
-                <div className="flex flex-col items-center">
-                    <img src={src} alt={alt} className="text-black text-6xl font-bold" />
-                    <p className="text-black text-md italic">{children}</p>
-                </div>
-              )
-        }
-    </>
+        <div className={style}>
+            <div>
+                <img src={src} alt={alt} />
+                {children && (
+                    <p className="text-black text-md italic text-center">{children}</p>
+                )}
+            </div>
+        </div>
     );
 }
 
