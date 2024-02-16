@@ -5,7 +5,7 @@ function List({ list=[], type="bulleted", fontSize="md" }) {
             return (
                 <ul className={combinedStyle}>
                     {list.map(entry => (
-                        <li>{entry}</li>
+                        <li key={entry}>{entry}</li>
                     ))}
                 </ul>
             );
@@ -15,7 +15,7 @@ function List({ list=[], type="bulleted", fontSize="md" }) {
             return (
                 <ol className={combinedStyle}>
                     {list.map(entry => (
-                        <li>{entry}</li>
+                        <li key={entry}>{entry}</li>
                     ))}
                 </ol>
             );
