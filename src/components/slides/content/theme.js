@@ -68,4 +68,9 @@ const flexAlign = {
     right: "items-end"
 };
 
-export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign };
+const listType = {
+    numbered: "list-decimal",
+    bulleted: "list-disc"
+};
+
+export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign, listType };
