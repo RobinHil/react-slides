@@ -62,4 +62,10 @@ const bgColor = {
     transparent: "bg-transparent"
 };
 
-export { headingSize, textAlign, textColor, bgColor, textSize };
+const flexAlign = {
+    left: "items-start",
+    center: "items-center",
+    right: "items-end"
+};
+
+export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign };

@@ -1,7 +1,8 @@
 import classNames from "classnames";
+import { flexAlign } from "./theme";
 
-function Image({ children, src="", alt="", align="start" }) {
-    const combinedStyle = classNames `flex flex-col items-${align}`;
+function Image({ children, src="", alt="", align="left" }) {
+    const combinedStyle = classNames("flex flex-col", flexAlign[align]);
     return (
         <div className={combinedStyle}>
             <div>
