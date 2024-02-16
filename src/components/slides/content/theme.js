@@ -21,7 +21,8 @@ const textSize = {
 const textAlign = {
     left: "text-left",
     center: "text-center",
-    right: "text-right"
+    right: "text-right",
+    justify: "text-justify"
 };
 
 const textColor = {
