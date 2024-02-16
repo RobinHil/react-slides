@@ -1,5 +1,9 @@
-function Heading({ children, fontSize="6xl", align="left" }) {
-    const combinedStyle = `text-black font-bold text-${fontSize} text-${align}`;
+import classNames from 'classnames';
+import { bgColor, headingSize, textAlign, textColor } from './theme.js';
+
+function Heading({ children, fontSize=6, align="left", color="black", bg="transparent" }) {
+    const combinedStyle = classNames("font-bold", headingSize[fontSize], textAlign[align], textColor[color], bgColor[bg]);
+
     return (
         <h1 className={combinedStyle}>{children}</h1>
     );

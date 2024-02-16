@@ -1,5 +1,7 @@
+import classNames from "classnames";
+
 function Image({ children, src="", alt="", align="start" }) {
-    const combinedStyle = `flex flex-col items-${align}`;
+    const combinedStyle = classNames `flex flex-col items-${align}`;
     return (
         <div className={combinedStyle}>
             <div>
