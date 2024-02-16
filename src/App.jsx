@@ -59,7 +59,7 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
                             lala lala la légende
                         </Image>
                         <br/>
-                        <List list={ ["test", "de", "bulleted", "list"] } fontSize="1"/>
+                        <List list={ ["test", "de", "bulleted", "list"] } fontSize={1}/>
                         <br/>
                         <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
                     </Slide>
