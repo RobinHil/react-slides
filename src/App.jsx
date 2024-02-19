@@ -9,6 +9,7 @@ import Slide from './components/slides/Slide.jsx';
 import Paragraph from './components/slides/content/Paragraph.jsx';
 import Image from './components/slides/content/Image.jsx';
 import List from './components/slides/content/List.jsx';
+import Markdown from './components/slides/content/Markdown.jsx';
 
 function App() {
 
@@ -62,6 +63,7 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
                         <List list={ ["test", "de", "bulleted", "list"] } fontSize={1}/>
                         <br/>
                         <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
+                        <Markdown />
                     </Slide>
                 </SlideViewer>
                 <ExitFullScreenButton />
