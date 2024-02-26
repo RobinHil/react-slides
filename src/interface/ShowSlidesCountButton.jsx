@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import FontAwesomeIcon from "./FontAwesomeIcon.jsx";
-import { useShowSlidesNumber } from '../../contexts/ShowSlidesNumber.context.jsx';
+import { useSlidesCount } from '../contexts/SlidesCount.context.jsx';
 
-function ShowSlidesNumberButton() {
-    const { isVisible, toggleVisible } = useShowSlidesNumber();
+function ShowSlidesCountButton() {
+    const { isVisible, toggleVisible } = useSlidesCount();
     const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseHover = () => {
@@ -30,4 +30,4 @@ function ShowSlidesNumberButton() {
     );
 }
 
-export default ShowSlidesNumberButton;
+export default ShowSlidesCountButton;

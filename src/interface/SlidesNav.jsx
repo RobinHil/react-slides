@@ -1,6 +1,6 @@
 import SlidesNavButton from './SlidesNavButton.jsx';
 import FontAwesomeIcon from './FontAwesomeIcon.jsx';
-import { useSlidesCount } from '../../contexts/SlidesCount.context.jsx';
+import { useSlidesCount } from '../contexts/SlidesCount.context.jsx';
 
 
 function SlidesNav() {

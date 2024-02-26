@@ -1,10 +1,8 @@
-import { useShowSlidesNumber } from "../../contexts/ShowSlidesNumber.context";
-import { useSlidesCount } from "../../contexts/SlidesCount.context";
-import { useFullScreen } from "../../contexts/FullScreen.context";
+import { useSlidesCount } from "../contexts/SlidesCount.context";
+import { useFullScreen } from "../contexts/FullScreen.context";
 
 function SlideViewer({ children }) {
-    const { count, maxSlide } = useSlidesCount();
-    const { isVisible } = useShowSlidesNumber();
+    const { count, maxSlide, isVisible } = useSlidesCount();
     const { isFullScreen } = useFullScreen();
 
     return (

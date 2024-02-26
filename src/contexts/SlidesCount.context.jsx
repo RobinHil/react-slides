@@ -9,6 +9,11 @@ function useSlidesCount() {
 function SlidesCountProvider({ children, max=1 }) {
     const [count, setCount] = useState(1);
     const [maxSlide, setMaxSlide] = useState(max);
+    const [isVisible, setVisible] = useState(true);
+
+    const toggleVisible = () => {
+        setVisible(!isVisible);
+    };
 
     const changeSlidesCount = (value) => {
         if (!isNaN(value)) {
@@ -79,7 +84,8 @@ function SlidesCountProvider({ children, max=1 }) {
                 firstSlidesCount,
                 lastSlidesCount,
                 maxSlide,
-                setMaxSlide
+                isVisible,
+                toggleVisible
             }}
         >
             {children}

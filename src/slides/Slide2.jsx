@@ -1,8 +1,8 @@
-import Heading from "../components/slides/content/Heading";
-import Paragraph from "../components/slides/content/Paragraph";
-import Image from "../components/slides/content/Image";
-import List from "../components/slides/content/List";
-import Markdown from "../components/slides/content/Markdown";
+import Heading from "../slidesComponents/content/Heading";
+import Paragraph from "../slidesComponents/content/Paragraph";
+import Image from "../slidesComponents/content/Image";
+import List from "../slidesComponents/content/List";
+import Markdown from "../slidesComponents/content/Markdown";
 
 function Slide2() {
     return (
