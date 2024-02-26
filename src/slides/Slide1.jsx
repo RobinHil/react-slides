@@ -49,7 +49,68 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
             <List list={ ["test", "de", "bulleted", "list"] } fontSize={1}/>
             <br/>
             <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
-            <Markdown />
+
+            <Markdown>
+{`
+# Titre principal
+
+Ceci est un paragraphe en **Markdown**!
+
+## Sous-titre
+
+- Une liste
+- Avec quelques éléments
+    - Un sous-élément
+    - Un autre sous-élément
+- Un autre élément
+
+### Un peu de code
+
+\`\`\`javascript
+const example = "Ceci est un exemple de code";
+console.log(example);
+\`\`\`
+
+### Liens
+
+Voici un [lien vers Google](https://www.google.com).
+
+### Citations
+
+> Ceci est une citation.
+
+### Images
+
+![Image alt text](https://via.placeholder.com/150)
+
+### Texte mis en forme
+
+*Italique*
+
+**Gras**
+
+### En-têtes de différentes tailles
+
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
+
+### Listes numérotées
+
+1. Premier élément
+2. Deuxième élément
+3. Troisième élément
+
+### Listes imbriquées
+
+- Premier niveau
+  - Deuxième niveau
+    - Troisième niveau
+`}
+            </Markdown>
         </>
     );
 }
