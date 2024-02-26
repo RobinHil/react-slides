@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import FontAwesomeIcon from "./FontAwesomeIcon";
-import { useFullScreen } from "../../contexts/FullScreen.context";
+import { useFullScreen } from "../contexts/FullScreen.context";
 
 function ExitFullScreenButton() {
     const { toggleFullScreen, isFullScreen } = useFullScreen();

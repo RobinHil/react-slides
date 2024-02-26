@@ -1,5 +1,5 @@
 import FontAwesomeIcon from "./FontAwesomeIcon.jsx";
-import { useFullScreen } from '../../contexts/FullScreen.context.jsx';
+import { useFullScreen } from '../contexts/FullScreen.context.jsx';
 
 function FullScreenButton() {
     const { toggleFullScreen } = useFullScreen();
