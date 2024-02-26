@@ -2,7 +2,7 @@ import Heading from "../slideComponents/content/Heading";
 import Paragraph from "../slideComponents/content/Paragraph";
 import Image from "../slideComponents/content/Image";
 import List from "../slideComponents/content/List";
-import Markdown from "../slideComponents/content/Markdown";
+import Code from "../slideComponents/content/Code";
 
 function Slide2() {
     return (
@@ -49,7 +49,7 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
             <List list={ ["test", "de", "bulleted", "list"] } fontSize={1}/>
             <br/>
             <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
-            <Markdown />
+            <Code></Code>
         </>
     );
 }

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { flexAlign } from "./theme";
+import { flexAlign } from "./theme.js";
 
 function Image({ children, src="", alt="", align="left" }) {
     const combinedStyle = classNames("flex flex-col", flexAlign[align]);
