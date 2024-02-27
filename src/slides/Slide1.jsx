@@ -50,9 +50,8 @@ Nam scelerisque lorem dapibus, sodales nunc eget, pulvinar mauris. Curabitur ac 
             <br/>
             <List list={ ["test", "de", "numbered", "list"] } type="numbered" />
 
-            <Markdown>
-{`
-# Titre principal
+            <Markdown>{
+`# Titre principal
 
 Ceci est un paragraphe en **Markdown**!
 
@@ -108,9 +107,8 @@ Voici un [lien vers Google](https://www.google.com).
 
 - Premier niveau
   - Deuxième niveau
-    - Troisième niveau
-`}
-            </Markdown>
+    - Troisième niveau`
+            }</Markdown>
         </>
     );
 }

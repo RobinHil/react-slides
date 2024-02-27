@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import Paragraph from './Paragraph.jsx';
 import Heading from './Heading.jsx';
 import Link from './Link.jsx';
+import Code from './Code.jsx';
 
 function Markdown({ children }) {
     const components = {
@@ -16,7 +17,7 @@ function Markdown({ children }) {
         ol: ({ children }) => <ol className={"list-inside list-decimal text-base text-black bg-transparent text-left"}>{children}</ol>,
         li: ({ children }) => <li key={children}>{children}</li>,
         blockquote: ({ children }) => <blockquote className={"border-l-4 border-gray-500 pl-4 italic my-4"}>{children}</blockquote>,
-        // code: ({ children }) => <pre className={classNames(bgColor.lightGray, textSize[3], textColor.white)}>{children}</pre>,
+        code: ({ children, className }) => <Code language={(/language-(\w+)/.exec(className || ''))[1]}>{children}</Code>,
         a: ({ children, href }) => <Link href={href}>{children}</Link>
     };
 
