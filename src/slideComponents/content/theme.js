@@ -62,6 +62,25 @@ const bgColor = {
     transparent: "bg-transparent"
 };
 
+const dividerColor = {
+    white: "divide-white",
+    black: "divide-black",
+    gray: "divide-gray-400",
+    lightGray: "divide-gray-200",
+    darkGray: "divide-gray-600",
+    red: "divide-red-700",
+    orange: "divide-orange-600",
+    yellow: "divide-yellow-500",
+    lime: "divide-lime-700",
+    green: "divide-green-600",
+    cyan: "divide-cyan-500",
+    sky: "divide-sky-500",
+    blue: "divide-blue-500",
+    violet: "divide-violet-700",
+    pink: "divide-pink-600",
+    transparent: "divide-transparent"
+};
+
 const flexAlign = {
     left: "items-start",
     center: "items-center",
@@ -73,4 +92,4 @@ const listType = {
     bulleted: "list-disc"
 };
 
-export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign, listType };
+export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign, listType, dividerColor };
