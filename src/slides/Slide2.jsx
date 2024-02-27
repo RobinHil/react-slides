@@ -1,7 +1,4 @@
 import Heading from "../slideComponents/content/Heading";
-import Paragraph from "../slideComponents/content/Paragraph";
-import Image from "../slideComponents/content/Image";
-import List from "../slideComponents/content/List";
 import Code from "../slideComponents/content/Code";
 import Table from "../slideComponents/content/Table";
 
