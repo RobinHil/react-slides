@@ -11,7 +11,7 @@ function App() {
     return (
         <SlidesCountProvider max={slides.length}>
             <FullScreenProvider>
-            <div className="flex flex-col h-screen">
+            <div className="flex flex-col h-screen overflow-hidden">
                 <Toolbar />
                 <SlideViewer>
                     <SlideLoader slides={slides} />
