@@ -11,7 +11,7 @@ function SlideViewer({ children }) {
                 <div className={`bg-white h-full w-full p-10 ${isFullScreen ? 'max-w-full' : 'shadow-2xl m-4 border rounded-xl'}`}>
                     {children}
                     {isVisible && (
-                        <div className={`absolute left-1/2 text-gray-600 ${isFullScreen ? 'bottom-3' : 'bottom-6'}`}>
+                        <div className={`absolute left-1/2 text-gray-600 ${isFullScreen ? 'bottom-2' : 'bottom-6'}`}>
                             <span className="text-base">{count}/{maxSlide}</span>
                         </div>
                     )}
