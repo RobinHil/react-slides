@@ -5,7 +5,31 @@ import Slide3 from './Slide3.jsx';
 const slides = [
     Slide1,
     Slide2,
-    Slide3
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
+    Slide1,
+    Slide2,
+    Slide3,
 ];
 
 export default slides;
