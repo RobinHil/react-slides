@@ -1,6 +1,6 @@
-import Heading from "../slideComponents/content/Heading";
-import Code from "../slideComponents/content/Code";
-import Table from "../slideComponents/content/Table";
+import Heading from "../slideComponents/Heading";
+import Code from "../slideComponents/Code";
+import Table from "../slideComponents/Table";
 
 function Slide2() {
     return (

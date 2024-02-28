@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { textSize, textAlign, textColor, bgColor } from "./theme.js";
 
-function Paragraph({ children, fontSize=3, align="left", color="black", bg="transparent" }) {
+function Paragraph({ children, fontSize=2, align="left", color="black", bg="transparent" }) {
     const combinedStyle = classNames(textSize[fontSize], textAlign[align], textColor[color], bgColor[bg]);
 
     return (
