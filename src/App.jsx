@@ -12,7 +12,7 @@ function App() {
 
   return (
     <SlidesCountProvider max={slides.length}>
-      <div className={`flex flex-col h-screen ${isVisible ? 'ml-32' : ''}`}>
+      <div className={`flex flex-col h-screen ${isVisible?"ml-32":""}`}>
         <Toolbar />
         <SlideViewer>
           <SlideLoader slides={slides} />
