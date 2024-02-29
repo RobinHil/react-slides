@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import { flexAlign, bgColor, textSize, textColor } from "./theme.js";
+import { flexAlign, bgColor, textSize, textColor } from './theme.js';
 
 function Image({ children, src="", alt="", align="left", fontSize=2, fontColor="black", bg="transparent" }) {
-    const combinedStyle = classNames("flex flex-col", flexAlign[align], bgColor[bg], textSize[fontSize], textColor[fontColor]);
+    const combinedStyle = `flex flex-col ${flexAlign[align]} ${bgColor[bg]} ${textSize[fontSize]} ${textColor[fontColor]}`;
 
     return (
         <div className={combinedStyle}>

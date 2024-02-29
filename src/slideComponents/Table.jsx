@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import { textSize, textColor, bgColor, textAlign, dividerColor } from "./theme.js";
+import { textSize, textColor, bgColor, textAlign, dividerColor } from './theme.js';
 
 function Table({ content, fontSize=2, fontColor="black", bg="transparent", align="center", divider="lightGray" }) {
-    const combinedStyle = classNames("divide-y divide-gray-200", textSize[fontSize], textColor[fontColor], bgColor[bg], textAlign[align], dividerColor[divider]);
+    const combinedStyle = `divide-y divide-gray-200 ${textSize[fontSize]} ${textColor[fontColor]} ${bgColor[bg]} ${textAlign[align]} ${dividerColor[divider]}`;
     
     return (
         <table className="min-w-full divide-y divide-gray-200">
