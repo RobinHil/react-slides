@@ -87,6 +87,15 @@ const flexAlign = {
     right: "items-end"
 };
 
+const layoutAlign = {
+    top: "items-start",
+    bottom: "items-end",
+    vCenter: "items-center",
+    left: "justify-start",
+    right: "justify-end",
+    hCenter: "justify-center"
+};
+
 const listType = {
     numbered: "list-decimal",
     bulleted: "list-disc"
@@ -122,4 +131,4 @@ const imgWidth = {
     auto: "w-auto"
 };
 
-export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign, listType, dividerColor, imgWidth };
+export { headingSize, textAlign, textColor, bgColor, textSize, flexAlign, listType, dividerColor, imgWidth, layoutAlign };
