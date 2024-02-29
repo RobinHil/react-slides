@@ -8,20 +8,20 @@ import Mosaic from './interface/Mosaic.jsx';
 import { useMosaic } from './contexts/Mosaic.context.jsx';
 
 function App() {
-  const { isVisible } = useMosaic();
+    const { isVisible } = useMosaic();
 
-  return (
-    <SlidesCountProvider max={slides.length}>
-      <div className={`flex flex-col h-screen ${isVisible?"ml-32":""}`}>
-        <Toolbar />
-        <SlideViewer>
-          <SlideLoader slides={slides} />
-        </SlideViewer>
-        <ExitFullScreenButton />
-        <Mosaic />
-      </div>
-    </SlidesCountProvider>
-  );
+    return (
+        <SlidesCountProvider max={slides.length}>
+            <div className={`flex flex-col h-screen ${isVisible?"ml-32":""}`}>
+                <Toolbar />
+                <SlideViewer>
+                    <SlideLoader slides={slides} />
+                </SlideViewer>
+                <ExitFullScreenButton />
+                <Mosaic />
+            </div>
+        </SlidesCountProvider>
+    );
 }
 
 export default App;
