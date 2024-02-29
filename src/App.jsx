@@ -4,7 +4,7 @@ import { SlidesCountProvider, useSlidesCount } from './contexts/SlidesCount.cont
 import ExitFullScreenButton from './interface/ExitFullScreenButton.jsx';
 import SlideLoader from './interface/SlideLoader.jsx';
 import slides from './slides/index.jsx';
-import SlideMosaic from './interface/SlideMosaic.jsx';
+import Mosaic from './interface/Mosaic.jsx';
 import { useMosaic } from './contexts/Mosaic.context.jsx';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <SlideLoader slides={slides} />
         </SlideViewer>
         <ExitFullScreenButton />
-        <SlideMosaic />
+        <Mosaic />
       </div>
     </SlidesCountProvider>
   );

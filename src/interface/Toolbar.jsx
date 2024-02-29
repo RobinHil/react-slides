@@ -1,5 +1,5 @@
 import SlidesNav from './SlidesNav.jsx';
-import ShowSlidesCountButton from './ShowSlidesCountButton.jsx';
+import ShowHideSlidesCountButton from './ShowHideSlidesCountButton.jsx';
 import FullScreenButton from './FullScreenButton.jsx';
 import MosaicButton from './MosaicButton.jsx';
 
@@ -9,7 +9,7 @@ function Toolbar() {
             <MosaicButton />
             <SlidesNav />
             <div>
-                <ShowSlidesCountButton />
+                <ShowHideSlidesCountButton />
                 <FullScreenButton />
             </div>
         </div>
