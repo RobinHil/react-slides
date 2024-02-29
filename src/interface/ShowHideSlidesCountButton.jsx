@@ -2,7 +2,7 @@ import { useState } from 'react';
 import FontAwesomeIcon from "./FontAwesomeIcon.jsx";
 import { useSlidesCount } from '../contexts/SlidesCount.context.jsx';
 
-function ShowSlidesCountButton() {
+function ShowHideSlidesCountButton() {
     const { isVisible, toggleVisible } = useSlidesCount();
     const [isHovered, setIsHovered] = useState(false);
 
@@ -30,4 +30,4 @@ function ShowSlidesCountButton() {
     );
 }
 
-export default ShowSlidesCountButton;
+export default ShowHideSlidesCountButton;

@@ -2,7 +2,7 @@ import { useSlidesCount } from '../contexts/SlidesCount.context.jsx';
 import { useMosaic } from '../contexts/Mosaic.context.jsx';
 import { useFullScreen } from '../contexts/FullScreen.context.jsx';
 
-function SlideMosaic() {
+function Mosaic() {
   const { count, maxSlide, changeSlidesCount } = useSlidesCount();
   const { isVisible } = useMosaic();
   const { isFullScreen } = useFullScreen();
@@ -12,7 +12,7 @@ function SlideMosaic() {
       {Array.from({ length: maxSlide }, (_, index) => (
         <button
           key={index+1}
-          className={`w-full h-14 min-h-12 flex items-center justify-center mb-2 font-semibold rounded-lg ${count===index+1?'bg-gray-400':'bg-gray-600 transition ease-in-out delay-50 hover:bg-gray-500'}`}
+          className={`w-full h-14 min-h-12 flex items-center justify-center mb-2 font-semibold rounded-lg outline-none ${count===index+1?'bg-gray-400':'bg-gray-600 transition ease-in-out delay-50 hover:bg-gray-500'}`}
           onClick={() => changeSlidesCount(index+1)}
         >
           {index+1}
@@ -22,4 +22,4 @@ function SlideMosaic() {
   );
 };
 
-export default SlideMosaic;
+export default Mosaic;
