@@ -1,6 +1,6 @@
 import Toolbar from './interface/Toolbar.jsx';
 import SlideViewer from './interface/SlideViewer.jsx';
-import { SlidesCountProvider, useSlidesCount } from './contexts/SlidesCount.context.jsx';
+import { SlidesCountProvider } from './contexts/SlidesCount.context.jsx';
 import ExitFullScreenButton from './interface/ExitFullScreenButton.jsx';
 import SlideLoader from './interface/SlideLoader.jsx';
 import slides from './slides/index.jsx';
