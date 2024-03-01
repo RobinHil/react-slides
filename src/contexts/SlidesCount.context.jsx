@@ -11,7 +11,14 @@ const initialState = {
 function reducer(state, action) {
     switch (action.type) {
         case "change":
-            return { ...state, count: Math.min(Math.max(action.payload, 1), state.maxSlide) };
+            if (!isNaN(action.payload)) {
+                if (action.payload>state.maxSlide)
+                    return { ...state, count: state.maxSlide };
+                else if (action.payload<1)
+                    return { ...state, count: 1 };
+                else
+                    return { ...state, count: action.payload };
+            }
         case "decrement":
             return { ...state, count: state.count-1<1?1:state.count-1 };
         case "increment":
