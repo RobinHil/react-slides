@@ -1,11 +1,7 @@
-import Toolbar from './interface/Toolbar.jsx';
-import SlideViewer from './interface/SlideViewer.jsx';
+import { Toolbar, SlideViewer, SlideLoader, ExitFullScreenButton, Mosaic } from './interface/index.jsx';
 import { SlidesCountProvider } from './contexts/SlidesCount.context.jsx';
-import ExitFullScreenButton from './interface/ExitFullScreenButton.jsx';
-import SlideLoader from './interface/SlideLoader.jsx';
-import slides from './slides/index.jsx';
-import Mosaic from './interface/Mosaic.jsx';
 import { useMosaic } from './contexts/Mosaic.context.jsx';
+import slides from './slides/index.jsx';
 
 function App() {
     const { isVisible } = useMosaic();
