@@ -8,7 +8,7 @@ function SlideViewer({ children }) {
     return (
         <div className={`flex-grow ${isFullScreen?"fixed inset-0":""}`}>
             <div className="flex items-center h-full pb-4">
-                <div className={`bg-white h-full w-full p-5 pb-8 ${isFullScreen?"max-w-full":"shadow-2xl m-4 border rounded-xl"}`}>
+                <div className={`bg-white h-full w-full p-5 ${isFullScreen?"max-w-full":"shadow-2xl m-4 border rounded-xl"}`}>
                     {children}
                     {state.isVisible && (
                         <div className={`fixed left-1/2 text-gray-600 ${isFullScreen?"bottom-2":"bottom-6"}`}>
