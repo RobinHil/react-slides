@@ -3,7 +3,7 @@ import { TwoColumnLayout, Heading, Paragraph, CenterLayout } from '../slideCompo
 function Texts1() {
     return (
         <CenterLayout>
-            <Heading fontSize={8} align="center" color="blue">Textes</Heading>
+            <Heading fontSize={8} align="center">Textes</Heading>
             <br />
             <TwoColumnLayout
                 leftContent={<CenterLayout>
@@ -55,10 +55,9 @@ function Texts1() {
 function Texts2() {
     return (
         <CenterLayout>
-            <Heading fontSize={8} align="center" color="blue">Textes</Heading>
+            <Heading fontSize={8} align="center">Textes</Heading>
             <br />
             <Heading fontSize={7} align="center">Mise en forme des textes</Heading>
-            <br />
             <br />
             <br />
             <TwoColumnLayout
