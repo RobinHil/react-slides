@@ -15,7 +15,7 @@ function ShowHideSlidesCountButton() {
             <button onClick={() => dispatch({ type: "toggleVisible" })} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover} className="text-gray-600 transition ease-in-out delay-50 hover:text-gray-700 hover:bg-gray-300 py-2 px-3 rounded-full outline-none">
                 {state.isVisible
                     ? <FontAwesomeIcon icon={"fa-eye"} />
-                    : <FontAwesomeIcon icon={"fa-eye-slash"} size={"text-lg"} />
+                    : <FontAwesomeIcon icon={"fa-eye-slash"} />
                 }
             </button>
             {isHovered && (

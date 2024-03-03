@@ -6,8 +6,11 @@ function Summary() {
             <Heading fontSize={8} align="center" color="blue">Sommaire</Heading>
             <br />
             <br />
+            <br />
+            <br />
             <List type="numbered" align="center" fontSize={7} list={[
-                "Textes simples",
+                "Textes",
+                "Liens",
                 "Couleurs",
                 "Images",
                 "Listes",
