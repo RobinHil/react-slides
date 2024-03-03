@@ -7,12 +7,12 @@ import Code from './Code.jsx';
 function Markdown({ children }) {
     const components = {
         p: ({ children }) => <Paragraph>{children}</Paragraph>,
-        h1: ({ children }) => <Heading>{children}</Heading>,
-        h2: ({ children }) => <Heading fontSize={5}>{children}</Heading>,
-        h3: ({ children }) => <Heading fontSize={4}>{children}</Heading>,
-        h4: ({ children }) => <Heading fontSize={3}>{children}</Heading>,
-        h5: ({ children }) => <Heading fontSize={2}>{children}</Heading>,
-        h6: ({ children }) => <Heading fontSize={1}>{children}</Heading>,
+        h1: ({ children }) => <Heading fontSize={9}>{children}</Heading>,
+        h2: ({ children }) => <Heading fontSize={8}>{children}</Heading>,
+        h3: ({ children }) => <Heading fontSize={7}>{children}</Heading>,
+        h4: ({ children }) => <Heading fontSize={6}>{children}</Heading>,
+        h5: ({ children }) => <Heading fontSize={5}>{children}</Heading>,
+        h6: ({ children }) => <Heading fontSize={4}>{children}</Heading>,
         ul: ({ children }) => <ul className={"list-inside list-disc text-sm text-black bg-transparent text-left"}>{children}</ul>,
         ol: ({ children }) => <ol className={"list-inside list-decimal text-sm text-black bg-transparent text-left"}>{children}</ol>,
         li: ({ children }) => <li key={children}>{children}</li>,
