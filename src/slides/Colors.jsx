@@ -10,8 +10,8 @@ function Colors() {
                 leftContent={<CenterLayout>
                     <Heading align="center">Texte</Heading>
                     <br />
-                    <Paragraph fontSize={6} align="center">
-                        Il existe différentes possibilitées prédéfinies<br />
+                    <Paragraph fontSize={6} align="justify">
+                        Il existe différentes possibilités prédéfinies<br />
                         en ce qui concerne les couleurs de texte.
                     </Paragraph>
                     <br />
@@ -36,7 +36,7 @@ function Colors() {
                     <Heading align="center">Fond</Heading>
                     <br />
                     <Paragraph fontSize={6} align="justify">
-                        Il existe différentes possibilitées prédéfinies<br />
+                        Il existe différentes possibilités prédéfinies<br />
                         en ce qui concerne les couleurs de fond.
                     </Paragraph>
                     <br />

@@ -13,7 +13,7 @@ function Lists() {
                         <Heading fontSize={5} align="center">Puces</Heading>
                         <br /><br />
                         <Paragraph align="justify">
-                            On peut créer une liste à puce basique à partir d'un simple tableau de chaînes de caractères.<br />
+                            On peut créer une liste à puces basique à partir d'un simple tableau de chaînes de caractères.<br />
                             <br />
                             On obtient par exemple :
                         </Paragraph>
@@ -56,13 +56,13 @@ function Lists() {
                         <br /><br />
                         <Paragraph align="justify">
                             On peut mettre en forme une liste en fonction des styles qu'on y place.
-                            Il est possible de modifier le style des textes de la liste.<br />
+                            Il est donc possible de modifier le style des textes de la liste.<br />
                             <br />
                             On obtient par exemple :
                         </Paragraph>
                         <br />
                         <List list={[
-                            <b>Texte bold</b>,
+                            <b>Texte gras</b>,
                             <u>Texte souligné</u>,
                             <i>Texte italique</i>,
                             <s>Texte barré</s>,
