@@ -62,26 +62,38 @@ function Texts2() {
             <br />
             <TwoColumnLayout
                 leftContent={<CenterLayout>
-                    <Heading fontSize={4} align="center" underline={true}>Souligné</Heading>
+                    <Heading fontSize={4} align="center">
+                        <u>Souligné</u>
+                    </Heading>
                     <br />
-                    <Paragraph fontSize={6} align="justify" underline={true}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                    <Paragraph fontSize={6} align="justify">
+                        <u>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                        </u>
                     </Paragraph>
                     <br />
                     <br />
                     <br />
-                    <Heading fontSize={4} align="center" crossed={true}>Barré</Heading>
+                    <Heading fontSize={4} align="center">
+                        <s>Barré</s>
+                    </Heading>
                     <br />
-                    <Paragraph fontSize={6} align="justify" crossed={true}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                    <Paragraph fontSize={6} align="justify">
+                        <s>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                        </s>
                     </Paragraph>
                 </CenterLayout>}
 
                 rightContent={<CenterLayout>
-                    <Heading fontSize={4} align="center" italic={true}>Italique</Heading>
+                    <Heading fontSize={4} align="center">
+                        <i>Italique</i>
+                    </Heading>
                     <br />
-                    <Paragraph fontSize={6} align="justify" italic={true}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                    <Paragraph fontSize={6} align="justify">
+                        <i>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna libero, vulputate et elit nec, consequat feugiat quam. Donec nec porttitor nisl, non gravida quam. Phasellus id aliquam nisi. In hac habitasse platea dictumst. Sed elementum metus sit amet purus vestibulum dictum. Curabitur enim tortor, porttitor non mauris sed, facilisis molestie lectus. Duis at leo lectus. Morbi congue odio nisi, sed fringilla eros rhoncus quis. Nullam malesuada tortor ac pharetra molestie.
+                        </i>
                     </Paragraph>
                     <br />
                     <br />

@@ -14,7 +14,7 @@ function Images() {
                         <br />
                         <Paragraph align="justify">
                             On peut créer une image simple.
-                            Elle sera placée dans le dossier "/public", ou directement dans les assets.
+                            Elle sera placée dans le dossierb public, ou directement dans les assets.
                         </Paragraph>
                         <br />
                         <Image src="/chat.jpg" alt="Un chat en tga convertit en jpg. Merci M. REMY pour ce beau chat." align="center" />
@@ -59,7 +59,9 @@ function Images() {
                         </Paragraph>
                         <br />
                         <Image src="/chat.jpg" alt="Un chat en tga convertit en jpg. Merci M. REMY pour ce beau chat." align="center">
-                            <Paragraph align="center" underline={true}>Voici une légende gérée par un beau composant Paragraph.</Paragraph>
+                            <Heading fontSize={3} align="center">
+                                Voici une légende gérée par un beau composant Heading.
+                            </Heading>
                         </Image>
                     </CenterLayout>}
                 />}

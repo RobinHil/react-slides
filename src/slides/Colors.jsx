@@ -42,7 +42,7 @@ function Colors() {
                     <br />
                     <Paragraph fontSize={6} align="center" color="white" bg="black">black</Paragraph>
                     <Paragraph fontSize={6} align="center" bg="white">white</Paragraph>
-                    <Paragraph fontSize={6} align="center" bg="gray">gray</Paragraph>
+                    <Paragraph fontSize={6} align="center" color="white" bg="gray">gray</Paragraph>
                     <Paragraph fontSize={6} align="center" bg="lightGray">lightGray</Paragraph>
                     <Paragraph fontSize={6} align="center" color="white" bg="darkGray">darkGray</Paragraph>
                     <Paragraph fontSize={6} align="center" bg="red">red</Paragraph>
@@ -59,8 +59,8 @@ function Colors() {
                 </CenterLayout>}
             />
             <br />
-            <Paragraph fontSize={6} align="center" italic={true}>
-                Ces couleurs sont applicables sur les textes, mais également sur les listes ainsi que sur les tableaux.
+            <Paragraph fontSize={6} align="center">
+                <i>Ces couleurs sont applicables sur les textes, mais également sur les listes ainsi que sur les tableaux.</i>
             </Paragraph>
         </CenterLayout>
     );

@@ -14,10 +14,8 @@ function Title() {
                 personnalisables, et accédez ainsi à vos médias en toutes circonstances<br/>
                 à partir d'une simple connexion internet et d'un navigateur web.
             </Paragraph>
-            <br />
-            <br />
-            <br />
-            <br />
+            <br /><br />
+            <br /><br />
             <Image src="/logo-amu.png" alt="Logo de l'université d'Aix-Marseille." align="center">
                 <Paragraph fontSize={5} align="center" italic={true}>
                     Par Robin HILAIRE, BUT Informatique 2ème année à l'IUT d'Arles
