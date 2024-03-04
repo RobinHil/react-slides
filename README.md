@@ -6,7 +6,7 @@ A react slides library to build your presentation medias.
 
 # Déploiement
 
-Afin de déployer l'outil, il faut d'abord vérifier que l'on a bien installé Node.js avec npm avec la version 18 au minimum.
+Afin de déployer l'outil, il faut d'abord vérifier que l'on a bien installé Node.js avec npm en version 18 au minimum.
 
 Il est ensuite nécessaire de se placer dans le répertoire du projet afin de procéder à l'installation des bibliothèques indispensables au projet :
 ```sh

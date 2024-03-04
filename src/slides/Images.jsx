@@ -14,7 +14,7 @@ function Images() {
                         <br />
                         <Paragraph align="justify">
                             On peut créer une image simple.
-                            Elle sera placée dans le dossierb public, ou directement dans les assets.
+                            Elle sera placée dans le dossier public, ou directement dans les assets.
                         </Paragraph>
                         <br />
                         <Image src="/chat.jpg" alt="Un chat en tga convertit en jpg. Merci M. REMY pour ce beau chat." align="center" />
@@ -41,7 +41,7 @@ function Images() {
                         <br />
                         <Paragraph align="justify">
                             On peut modifier la taille d'une image, pour la réduire seulement.
-                            Elle gardera alors le même ratio largeur*hauteur afin d'éviter la déformation de l'image.<br />
+                            Elle gardera alors le même ratio largeur/hauteur afin d'éviter toute déformation de l'image.<br />
                             Cela se fait grâce à la props "width" qui prend des valeurs en fraction.
                         </Paragraph>
                         <br />
