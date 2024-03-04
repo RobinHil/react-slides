@@ -58,6 +58,10 @@ function Colors() {
                     <Paragraph fontSize={6} align="center" bg="transparent">transparent</Paragraph>
                 </CenterLayout>}
             />
+            <br />
+            <Paragraph fontSize={6} align="center" italic={true}>
+                Ces couleurs sont applicables sur les textes, mais également sur les listes ainsi que sur les tableaux.
+            </Paragraph>
         </CenterLayout>
     );
 }

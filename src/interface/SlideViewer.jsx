@@ -12,7 +12,7 @@ function SlideViewer({ children }) {
                     {children}
                     {state.isVisible && (
                         <div className={`fixed left-1/2 text-gray-600 ${isFullScreen?"bottom-2":"bottom-6"}`}>
-                            <span className="text-base">{state.count}/{state.maxSlide}</span>
+                            <span className="text-xl">{state.count}/{state.maxSlide}</span>
                         </div>
                     )}
                 </div>
