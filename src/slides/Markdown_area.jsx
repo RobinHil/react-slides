@@ -8,12 +8,12 @@ function Markdown_area() {
             <TwoColumnLayout
                 leftContent={<CenterLayout>
                     <Markdown>{
-`# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
+`# Titre 1
+## Titre 2
+### Titre 3
+#### Titre 4
+##### Titre 5
+###### Titre 6
 
 <br/>
 
@@ -23,13 +23,25 @@ function Markdown_area() {
 
 ~~Texte barré~~
 
-Texte simple`
+Texte simple
+
+<br/>
+
+| Colonne 1 | Colonne 2 | Colonne 3 |
+| --------- | --------- | --------- |
+|  Ligne 1  | Valeur 1  | Valeur 2  |
+|  Ligne 2  | Valeur 3  | Valeur 4  |`
                     }</Markdown>
                 </CenterLayout>}
 
                 rightContent={<CenterLayout>
                     <Markdown>{
-`> Citation
+`- [x] Tâche complétée
+- [ ] Tâche non complétée
+
+<br/>
+
+> Voici une citation
 
 <br/>
 
@@ -57,19 +69,7 @@ const exemple = (num) => {
 
 <br/>
 
-[Lien vers google.fr](https://google.fr)
-
-Table:
-
-| Column 1 | Column 2 | Column 3 |
-| -------- | -------- | -------- |
-| Row 1    | Value 1  | Value 2  |
-| Row 2    | Value 3  | Value 4  |
-
-Task list:
-
-- [x] Completed task
-- [ ] Incomplete task`
+[Lien vers google.fr](https://google.fr)`
                     }</Markdown>
                 </CenterLayout>}
             />
