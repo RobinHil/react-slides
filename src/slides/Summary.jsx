@@ -15,7 +15,7 @@ function Summary() {
                 "Images",
                 "Listes",
                 "Tableaux",
-                "Zones de code",
+                "Code",
                 "Markdown"
             ]} />
         </CenterLayout>

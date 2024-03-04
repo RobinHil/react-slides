@@ -4,10 +4,9 @@ function Lists() {
     return (
         <CenterLayout>
             <Heading align="center" fontSize={8}>Listes</Heading>
-            <br />
-            <br />
-            <br />
-            <br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
             <TwoColumnLayout
                 leftContent={<TwoColumnLayout
                     leftContent={<CenterLayout>
@@ -65,10 +64,11 @@ function Lists() {
                         <List list={[
                             <b>Texte bold</b>,
                             <u>Texte souligné</u>,
+                            <i>Texte italique</i>,
+                            <s>Texte barré</s>,
                             "Fond bleu de liste",
                             "Texte rouge de liste",
                             "Texte plus petit",
-                            "Sixième élément",
                             "..."
                         ]} type="bulleted" fontSize={5} bg="blue" color="red" />
                     </CenterLayout>}
@@ -83,8 +83,6 @@ function Lists() {
                         </Paragraph>
                         <List list={[
                             "Premier élément",
-                            "Deuxième élément",
-                            "Troisième élément",
                             "..."
                         ]} type="bulleted" />
                         <br />
@@ -92,9 +90,7 @@ function Lists() {
                             À droite :
                         </Paragraph>
                         <List list={[
-                            "Premier élément",
                             "Deuxième élément",
-                            "Troisième élément",
                             "..."
                         ]} type="bulleted" align="right" />
                         <br />
@@ -102,8 +98,6 @@ function Lists() {
                             Au centre :
                         </Paragraph>
                         <List list={[
-                            "Premier élément",
-                            "Deuxième élément",
                             "Troisième élément",
                             "..."
                         ]} type="bulleted" align="center" />
