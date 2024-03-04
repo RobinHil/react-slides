@@ -4,8 +4,8 @@ function Links() {
     return (
         <CenterLayout>
             <Heading align="center" fontSize={8}>Liens</Heading>
-            <br />
-            <br />
+            <br /><br />
+            <br /><br />
             <Paragraph fontSize={7} align="center">
                 Il est possible d'ajouter des liens hypertextes directement intégrés<br />
                 à la présentation de manière très simple grâce au composant Link.

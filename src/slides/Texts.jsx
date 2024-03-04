@@ -57,7 +57,7 @@ function Texts2() {
         <CenterLayout>
             <Heading fontSize={8} align="center">Textes</Heading>
             <br />
-            <Heading fontSize={7} align="center">Mise en forme des textes</Heading>
+            <Heading fontSize={6} align="center">Mise en forme des textes</Heading>
             <br />
             <br />
             <TwoColumnLayout

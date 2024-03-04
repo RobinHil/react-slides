@@ -15,7 +15,7 @@ function Markdown({ children }) {
         h6: ({ children }) => <Heading fontSize={4}>{children}</Heading>,
         ul: ({ children }) => <ul className={"list-inside list-disc text-sm text-black bg-transparent text-left"}>{children}</ul>,
         ol: ({ children }) => <ol className={"list-inside list-decimal text-sm text-black bg-transparent text-left"}>{children}</ol>,
-        li: ({ children }) => <li key={children}>{children}</li>,
+        li: ({ children }) => <li key={Math.random()}>{children}</li>,
         blockquote: ({ children }) => <blockquote className={"border-l-4 border-gray-500 pl-4 italic my-4"}>{children}</blockquote>,
         code: ({ children, className }) => <Code language={(/language-(\w+)/.exec(className || ''))[1]}>{children}</Code>,
         a: ({ children, href }) => <Link href={href}>{children}</Link>

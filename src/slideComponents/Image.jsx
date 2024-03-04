@@ -8,7 +8,7 @@ function Image({ children, src="", alt="", align="center", fontSize=2, fontColor
             {children?(
                 <figure className="flex flex-col items-center">
                     <img src={src} alt={alt} className={`h-auto ${imgWidth[width]}`} />
-                    <figcaption className="italic text-center">
+                    <figcaption className="italic text-center text-xl">
                         {children}
                     </figcaption>
                 </figure>
