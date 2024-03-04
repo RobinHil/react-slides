@@ -8,6 +8,7 @@ import Lists from './Lists.jsx';
 import Tables from './Tables.jsx';
 import Code_area from './Code_area.jsx';
 import Markdown_area from './Markdown_area.jsx';
+import Conclusion from './Conclusion.jsx';
 
 const slides = [
     Title,
@@ -20,7 +21,8 @@ const slides = [
     Lists,
     Tables,
     Code_area,
-    Markdown_area
+    Markdown_area,
+    Conclusion
 ];
 
 export default slides;
