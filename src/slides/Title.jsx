@@ -16,11 +16,9 @@ function Title() {
             </Paragraph>
             <br /><br />
             <br /><br />
-            <Image src="/logo-amu.png" alt="Logo de l'université d'Aix-Marseille." align="center">
-                <Paragraph fontSize={5} align="center" italic={true}>
-                    Par Robin HILAIRE, BUT Informatique 2ème année à l'IUT d'Arles
-                </Paragraph>
-            </Image>
+            <Paragraph fontSize={5} align="center" italic={true}>
+                Par Robin HILAIRE
+            </Paragraph>
         </CenterLayout>
     );
 }
