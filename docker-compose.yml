@@ -1,0 +1,17 @@
+services:
+  react-slides:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-slides
+    restart: always
+    # ports:
+    #   - "8000:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - proxy_network
+
+networks:
+  proxy_network:
+    external: true
