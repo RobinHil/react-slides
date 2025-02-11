@@ -1,50 +1,151 @@
-_Robin HILAIRE, BUT 2ème année à l'IUT d'Arles_
-
 # React Slides
 
-A react slides library to build your presentation medias.
+A modern React-based presentation library for creating beautiful and interactive slideshows directly in your web browser.
 
-# Déploiement
+## Features
 
-Afin de déployer l'outil, il faut d'abord vérifier que l'on a bien installé Node.js avec npm en version 18 au minimum.
+- Modern and clean design with Tailwind CSS
+- Fully responsive layout
+- Keyboard navigation support
+- Support for images and media
+- Code syntax highlighting
+- Markdown support
+- Multiple layout options
+- Customizable themes and colors
+- Support for tables and lists
+- Hyperlink support
 
-Il est ensuite nécessaire de se placer dans le répertoire du projet afin de procéder à l'installation des bibliothèques indispensables au projet :
-```sh
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm (comes with Node.js)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/RobinHil/react-slides.git
+cd react-slides
+```
+
+2. Install dependencies:
+```bash
 npm install
 ```
 
-On peut ensuite lancer le projet avec la commande de développement pour une exécution locale :
-```sh
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-On peut également déployer directement sur un serveur notre projet. Il suffit pour cela d'exécuter la commande de construction du projet puis de déplacer le contenu du dossier ```dist/``` produit vers le répertoire distant dédié à l'application sur notre serveur.
-Par exemple :
-```sh
+4. Build for production:
+```bash
 npm run build
-rsync -r dist/* /var/www/nom_du_site/
 ```
 
-Si on désire modifier les diapositives, il faut modifier les fichiers contenus dans le dossier ```/src/slides/``` du projet.
+## Usage
 
-Chaque slide est représentée par un composant indépendant. Ces composants doivent ABSOLUMENT être importés dans le fichier ```/src/slides/index.jsx```, puis être ajoutés dans la liste ```slides``` présente dans le fichier comme suit :
+### Basic Components
+
+React Slides comes with several pre-built components:
+
+- `CenterLayout` - Centers content vertically and horizontally
+- `Code` - For code blocks with syntax highlighting
+- `Heading` - For titles and headings
+- `Image` - For displaying images with optional captions
+- `Link` - For hyperlinks
+- `List` - For bulleted or numbered lists
+- `Markdown` - For rendering Markdown content
+- `Paragraph` - For text content
+- `Table` - For tabular data
+- `TwoColumnLayout` - For side-by-side content
+
+### Creating Slides
+
+1. Create a new slide component in the `/src/slides/` directory:
 
 ```jsx
-// ...
-import Diapositive from './Diapositive.jsx';
+import { CenterLayout, Heading, Paragraph } from '../slideComponents/index.jsx';
+
+function MySlide() {
+    return (
+        <CenterLayout>
+            <Heading fontSize={8} align="center">My Slide</Heading>
+            <Paragraph fontSize={6} align="center">
+                This is my awesome slide content!
+            </Paragraph>
+        </CenterLayout>
+    );
+}
+
+export default MySlide;
+```
+
+2. Import and add your slide to `/src/slides/index.jsx`:
+
+```jsx
+import MySlide from './MySlide.jsx';
 
 const slides = [
-    Diapositive,
-    // ...
+    // ... other slides
+    MySlide,
 ];
 
 export default slides;
 ```
 
-Cet exemple permet que la diapositive contenue dans le composant ```Diapositive``` soit prise en compte dans la présentation.
+## Customization
 
-Pour finir, les composants utiles pour la construction des diapositives sont importables depuis le fichier ```/src/slideComponents/index.jsx``` :
-```jsx
-// Liste de tous les composants importables
-import {CenterLayout, Code, Heading, Image, Link, List, Markdown, Paragraph, Table, TwoColumnLayout} from '../slideComponents/index.jsx';
+### Colors
+Available color options for text and backgrounds:
+- Basic: `white`, `black`, `gray`, `lightGray`, `darkGray`
+- Colors: `red`, `orange`, `yellow`, `lime`, `green`, `cyan`, `sky`, `blue`, `violet`, `pink`
+
+### Text Sizes
+- Headings: 1-9 scale
+- Paragraphs: 1-13 scale
+
+### Layouts
+- Center Layout
+- Two Column Layout
+- Custom layouts possible through Tailwind CSS classes
+
+## Deployment
+
+To deploy to a production server:
+
+1. Build the project:
+```bash
+npm run build
 ```
+
+2. Copy the contents of the `dist/` folder to your web server:
+```bash
+rsync -r dist/* /var/www/your-site/
+```
+
+### Docker Deployment
+
+This project includes Docker support. To deploy using Docker:
+
+1. Build and start the container:
+```bash
+docker compose -p react-slides up -d --build
+```
+
+2. To stop the container:
+```bash
+docker compose -p react-slides down
+```
+
+## Tech Stack
+
+- React 18
+- Vite
+- Tailwind CSS
+- React Markdown
+- Syntax Highlighter
+- Font Awesome
+- Docker
