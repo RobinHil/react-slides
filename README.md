@@ -1,70 +1,38 @@
 # React Slides
 
-A modern React-based presentation library for creating beautiful and interactive slideshows directly in your web browser.
+A presentation framework for React. Each slide is a component built from a small
+set of layout and content primitives, and the deck runs in the browser with
+keyboard navigation, a slide overview, and full-screen mode.
+
+The repository ships with a twelve-slide demo deck that documents every
+component, so `npm run dev` immediately shows what the library can do.
 
 ## Features
 
-- Modern and clean design with Tailwind CSS
-- Fully responsive layout
-- Keyboard navigation support
-- Support for images and media
-- Code syntax highlighting
-- Markdown support
-- Multiple layout options
-- Customizable themes and colors
-- Support for tables and lists
-- Hyperlink support
+- Slides written as React components, with Tailwind CSS for styling.
+- Keyboard navigation: left and right arrows to move, up and down to jump to the
+  last and first slide.
+- Mosaic view showing every slide at once, plus full-screen mode and an optional
+  slide counter.
+- Content primitives for headings, paragraphs, lists, tables, links, images,
+  Markdown, and syntax-highlighted code.
+- A shared theme: named font sizes, alignments, colors, and image widths, all
+  mapping onto Tailwind classes.
 
-## Getting Started
+## Getting started
 
-### Prerequisites
+Requires Node.js 22 or later.
 
-- Node.js (version 18 or higher)
-- npm (comes with Node.js)
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/RobinHil/react-slides.git
-cd react-slides
-```
-
-2. Install dependencies:
 ```bash
 npm install
+npm run dev        # development server on http://localhost:5173
+npm run build      # production build in dist/
+npm run preview    # serve the production build locally
 ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
+## Writing a slide
 
-4. Build for production:
-```bash
-npm run build
-```
-
-## Usage
-
-### Basic Components
-
-React Slides comes with several pre-built components:
-
-- `CenterLayout` - Centers content vertically and horizontally
-- `Code` - For code blocks with syntax highlighting
-- `Heading` - For titles and headings
-- `Image` - For displaying images with optional captions
-- `Link` - For hyperlinks
-- `List` - For bulleted or numbered lists
-- `Markdown` - For rendering Markdown content
-- `Paragraph` - For text content
-- `Table` - For tabular data
-- `TwoColumnLayout` - For side-by-side content
-
-### Creating Slides
-
-1. Create a new slide component in the `/src/slides/` directory:
+Create a component in `src/slides/`:
 
 ```jsx
 import { CenterLayout, Heading, Paragraph } from '../slideComponents/index.jsx';
@@ -74,7 +42,7 @@ function MySlide() {
         <CenterLayout>
             <Heading fontSize={8} align="center">My Slide</Heading>
             <Paragraph fontSize={6} align="center">
-                This is my awesome slide content!
+                Slide content goes here.
             </Paragraph>
         </CenterLayout>
     );
@@ -83,69 +51,72 @@ function MySlide() {
 export default MySlide;
 ```
 
-2. Import and add your slide to `/src/slides/index.jsx`:
+Then register it in `src/slides/index.jsx`, in presentation order:
 
 ```jsx
 import MySlide from './MySlide.jsx';
 
 const slides = [
-    // ... other slides
+    // ...
     MySlide,
 ];
 
 export default slides;
 ```
 
-## Customization
+## Components
 
-### Colors
-Available color options for text and backgrounds:
-- Basic: `white`, `black`, `gray`, `lightGray`, `darkGray`
-- Colors: `red`, `orange`, `yellow`, `lime`, `green`, `cyan`, `sky`, `blue`, `violet`, `pink`
+| Component | Purpose |
+| --- | --- |
+| `CenterLayout` | Centers its content vertically and horizontally |
+| `TwoColumnLayout` | Side-by-side content |
+| `Heading` | Titles |
+| `Paragraph` | Body text |
+| `List` | Bulleted or numbered lists |
+| `Table` | Tabular data |
+| `Link` | Hyperlinks |
+| `Image` | Images, with an optional caption |
+| `Code` | Code blocks with syntax highlighting |
+| `Markdown` | Rendered Markdown |
 
-### Text Sizes
-- Headings: 1-9 scale
-- Paragraphs: 1-13 scale
-
-### Layouts
-- Center Layout
-- Two Column Layout
-- Custom layouts possible through Tailwind CSS classes
+Sizes, alignments, and colors are passed as props and resolved through
+`src/slideComponents/theme.js`. Colors available for text, backgrounds and
+dividers: `white`, `black`, `gray`, `lightGray`, `darkGray`, `red`, `orange`,
+`yellow`, `lime`, `green`, `cyan`, `sky`, `blue`, `violet`, `pink`. Anything
+beyond that can be done with plain Tailwind classes.
 
 ## Deployment
 
-To deploy to a production server:
+The build is a static bundle. Copy it to any web server:
 
-1. Build the project:
 ```bash
 npm run build
-```
-
-2. Copy the contents of the `dist/` folder to your web server:
-```bash
 rsync -r dist/* /var/www/your-site/
 ```
 
-### Docker Deployment
+Or use the included Docker setup, which builds the bundle and serves it with
+Caddy:
 
-This project includes Docker support. To deploy using Docker:
-
-1. Build and start the container:
 ```bash
 docker compose -p react-slides up -d --build
-```
-
-2. To stop the container:
-```bash
 docker compose -p react-slides down
 ```
 
-## Tech Stack
+The Compose file expects an external network named `proxy_network` and no
+published port, so a reverse proxy in front can route to it. To run it
+standalone instead, remove the `networks` block and publish a port.
 
-- React 18
-- Vite
-- Tailwind CSS
-- React Markdown
-- Syntax Highlighter
-- Font Awesome
-- Docker
+## Stack
+
+React 18, Vite, Tailwind CSS, React Markdown, react-syntax-highlighter,
+Font Awesome, Docker and Caddy.
+
+## Layout
+
+```
+src/
+  slides/            the deck: one component per slide, index.jsx sets the order
+  slideComponents/   layout and content primitives, theme.js
+  interface/         navigation bar, mosaic, full-screen and counter controls
+  contexts/          slide index, mosaic and full-screen state
+```
