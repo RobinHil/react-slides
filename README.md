@@ -21,7 +21,7 @@ component, so `npm run dev` immediately shows what the library can do.
 
 ## Getting started
 
-Requires Node.js 22 or later.
+Requires Node.js 24 (the current LTS); see `.nvmrc`.
 
 ```bash
 npm install
@@ -108,8 +108,8 @@ standalone instead, remove the `networks` block and publish a port.
 
 ## Stack
 
-React 18, Vite, Tailwind CSS, React Markdown, react-syntax-highlighter,
-Font Awesome, Docker and Caddy.
+React 19, Vite 8, Tailwind CSS 3, React Markdown, react-syntax-highlighter,
+Font Awesome 7, Docker and Caddy.
 
 ## Layout
 

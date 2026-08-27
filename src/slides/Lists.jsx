@@ -62,10 +62,10 @@ function Lists() {
                         </Paragraph>
                         <br />
                         <List list={[
-                            <b>Texte gras</b>,
-                            <u>Texte souligné</u>,
-                            <i>Texte italique</i>,
-                            <s>Texte barré</s>,
+                            <b key="f0">Texte gras</b>,
+                            <u key="f1">Texte souligné</u>,
+                            <i key="f2">Texte italique</i>,
+                            <s key="f3">Texte barré</s>,
                             "Fond bleu de liste",
                             "Texte rouge de liste",
                             "Texte plus petit",

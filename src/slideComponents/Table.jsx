@@ -6,10 +6,10 @@ function Table({ content, fontSize=6, fontColor="black", bg="transparent", align
     return (
         <table className="min-w-full divide-y divide-gray-200">
             <tbody className={combinedStyle}>
-                {content.map((row) => (
-                    <tr key={Math.random()}>
-                        {row.map((cell) => (
-                            <td key={Math.random()} className="px-6 py-4">
+                {content.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => (
+                            <td key={cellIndex} className="px-6 py-4">
                                 {cell}
                             </td>
                         ))}

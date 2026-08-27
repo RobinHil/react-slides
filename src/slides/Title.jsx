@@ -1,4 +1,4 @@
-import { CenterLayout, Heading, Image, Paragraph } from '../slideComponents/index.jsx';
+import { CenterLayout, Heading, Paragraph } from '../slideComponents/index.jsx';
 
 function Title() {
     return (

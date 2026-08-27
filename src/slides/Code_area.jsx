@@ -1,4 +1,4 @@
-import { CenterLayout, Code, Heading, Paragraph, TwoColumnLayout } from '../slideComponents/index.jsx';
+import { CenterLayout, Code, Heading, TwoColumnLayout } from '../slideComponents/index.jsx';
 
 function Code_area() {
     return (

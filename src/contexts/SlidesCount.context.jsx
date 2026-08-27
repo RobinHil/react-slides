@@ -11,14 +11,15 @@ const initialState = {
 function reducer(state, action) {
     switch (action.type) {
         case "change":
-            if (!isNaN(action.payload)) {
-                if (action.payload>state.maxSlide)
-                    return { ...state, count: state.maxSlide };
-                else if (action.payload<1)
-                    return { ...state, count: 1 };
-                else
-                    return { ...state, count: action.payload };
-            }
+            // Une charge non numerique tombait dans le case suivant et decrementait
+            // la diapositive au lieu de ne rien faire.
+            if (isNaN(action.payload))
+                return state;
+            if (action.payload>state.maxSlide)
+                return { ...state, count: state.maxSlide };
+            if (action.payload<1)
+                return { ...state, count: 1 };
+            return { ...state, count: action.payload };
         case "decrement":
             return { ...state, count: state.count-1<1?1:state.count-1 };
         case "increment":

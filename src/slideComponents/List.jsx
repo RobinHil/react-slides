@@ -5,8 +5,8 @@ function List({ list=[], type="bulleted", fontSize=6, align="left", color="black
 
     return (
         <ul className={combinedStyle}>
-            {list.map(entry => (
-                <li key={Math.random()}>{entry}</li>
+            {list.map((entry, index) => (
+                <li key={index}>{entry}</li>
             ))}
         </ul>
     );
