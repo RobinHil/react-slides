@@ -85,6 +85,13 @@ dividers: `white`, `black`, `gray`, `lightGray`, `darkGray`, `red`, `orange`,
 `yellow`, `lime`, `green`, `cyan`, `sky`, `blue`, `violet`, `pink`. Anything
 beyond that can be done with plain Tailwind classes.
 
+`Code` registers a small set of languages rather than pulling in all of
+highlight.js, which would add roughly 800 KB to the bundle: `bash`, `cpp`,
+`css`, `javascript`, `json`, `markdown`, `python`, `typescript` and `xml`
+(plus the `js`, `ts`, `html`, `sh` and `c++` aliases). An unregistered language
+still renders, just without colors - add it in
+`src/slideComponents/Code.jsx`.
+
 ## Deployment
 
 The build is a static bundle. Copy it to any web server:
