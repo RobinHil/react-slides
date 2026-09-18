@@ -1,0 +1,146 @@
+name: Pages
+
+# Le diaporama est une application Vite entierement cliente : aucune donnee
+# distante, aucun routeur, tout est dans le bundle. Il se publie tel quel sur
+# GitHub Pages.
+#
+# Pages doit etre regle sur "GitHub Actions" dans Settings > Pages. L'etape
+# configure-pages lit cette configuration au lieu de deviner une adresse, ce
+# qui fait qu'un domaine personnalise fonctionne sans toucher a ce fichier.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Construit le site et prouve qu'il vaut d'etre publie. Une pull request
+  # s'arrete ici : rien n'est publie depuis une branche.
+  build:
+    name: Build and check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      # Ou le site va vivre, demande a Pages plutot qu'ecrit en dur : la reponse
+      # est juste pour un site de projet, un site utilisateur et un domaine
+      # personnalise. base_path vaut "/react-slides" ou "" (site utilisateur),
+      # jamais "/", d'ou la normalisation vers une valeur terminee par un slash
+      # que Vite attend.
+      - uses: actions/configure-pages@v6
+        id: pages
+
+      - name: Build the static site
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+          base="${BASE_PATH%/}/"
+          echo "base: $base"
+          npx vite build --base="$base"
+
+      # Ce que le build est cense avoir produit, verifie plutot que suppose.
+      # Le point fragile est chat.jpg : les diapositives le designent par un
+      # chemin absolu, et c'est le composant Image qui le resout contre la base
+      # du build. Si cette resolution disparait, l'image tombe en 404 sur Pages
+      # alors qu'elle continue de s'afficher en developpement.
+      - name: Assert the build is complete
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+          cd dist
+          base="${BASE_PATH%/}/"
+
+          for file in index.html favicon.svg chat.jpg; do
+            test -f "$file" || { echo "missing: $file"; exit 1; }
+          done
+
+          grep -q "<title>React Slides</title>" index.html
+
+          # La base reelle est bien compilee dans le bundle : c'est elle qui
+          # prefixe les chemins d'images a l'execution.
+          grep -rq "$base" assets/*.js || { echo "base $base absente du bundle"; exit 1; }
+
+          for asset in $(grep -oE "(src|href)=\"[^\"]*assets/[^\"]*\"" index.html | cut -d'"' -f2); do
+            relative=".${asset#"${base%/}"}"
+            test -f "$relative" || { echo "dangling asset: $asset"; exit 1; }
+          done
+
+          echo "dist is complete:"
+          du -sh .
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  # Publie ce que le build a verifie. Pages exige ces permissions et cet
+  # environnement ; le groupe de concurrence est celui que partagent les
+  # deploiements Pages, et il n'annule pas un deploiement en cours.
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+
+  # Repose les memes questions au site publie, par le reseau. C'est la seule
+  # etape qui exerce le vrai chemin de base, donc la seule qui verifie que
+  # l'image des diapositives est reellement atteignable.
+  verify:
+    name: Verify what is published
+    if: github.event_name != 'pull_request'
+    needs: deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Fetch the published page
+        env:
+          SITE: ${{ needs.deploy.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          site="${SITE%/}"
+          echo "site: $site"
+
+          for attempt in 1 2 3 4 5; do
+            if curl -fsS "$site/" -o /tmp/index.html; then break; fi
+            echo "attempt $attempt failed, waiting"
+            sleep 10
+          done
+
+          grep -q "<title>React Slides</title>" /tmp/index.html
+          curl -fsS -o /dev/null "$site/chat.jpg"
+
+          echo "verified $site"
