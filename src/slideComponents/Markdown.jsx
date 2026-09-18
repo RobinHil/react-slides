@@ -7,6 +7,7 @@ import Paragraph from './Paragraph.jsx';
 import Heading from './Heading.jsx';
 import Link from './Link.jsx';
 import Code from './Code.jsx';
+import resolveSrc from './resolveSrc.js';
 
 function isCheckbox(children) {
     if (React.isValidElement(children)) {
@@ -40,6 +41,10 @@ function Markdown({ children }) {
         blockquote: ({ children }) => <blockquote className={"border-l-4 border-gray-500 pl-4 italic my-4"}>{children}</blockquote>,
         code: ({ children, className }) => <Code language={!className?"":(/language-(\w+)/.exec(className||""))[1]} fontSize={4}>{children}</Code>,
         a: ({ children, href }) => <Link href={href} fontSize={5}>{children}</Link>,
+        // Une image ecrite en Markdown - ![alt](/fichier.svg) - passait
+        // directement dans une <img> sans etre rebasee : elle pointait vers la
+        // racine du domaine et tombait en 404 sous un sous-chemin.
+        img: ({ src, alt }) => <img src={resolveSrc(src)} alt={alt} className="inline-block h-auto max-w-full" />,
         table: ({ children }) => <table className={`min-w-full divide-y divide-gray-200 ${textSize[5]} ${textAlign["center"]}`}>{children}</table>,
         thead: ({ children }) => <thead className="divide-y divide-gray-200">{children}</thead>,
         tbody: ({ children }) => <tbody className="divide-y divide-gray-200">{children}</tbody>,

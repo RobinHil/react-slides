@@ -1,5 +1,7 @@
 # React Slides
 
+Live at <https://robinhil.github.io/react-slides/>
+
 A presentation framework for React. Each slide is a component built from a small
 set of layout and content primitives, and the deck runs in the browser with
 keyboard navigation, a slide overview, and full-screen mode.
