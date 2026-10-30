@@ -1,0 +1,51 @@
+site_name: React Slides
+repo_url: https://github.com/RobinHil/react-slides
+copyright: MIT License · Robin HILAIRE
+theme:
+  name: material
+  logo: images/logo.svg
+  favicon: images/logo.svg
+  font: false
+  features:
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: cyan
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: cyan
+extra:
+  alternate:
+    - name: English
+      link: ../en/
+      lang: en
+    - name: Français
+      link: ../fr/
+      lang: fr
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true

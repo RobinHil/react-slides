@@ -1,0 +1,4 @@
+video,
+iframe {
+    visibility: hidden !important;
+}

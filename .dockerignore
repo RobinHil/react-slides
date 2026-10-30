@@ -1,0 +1,10 @@
+**
+!index.html
+!.nvmrc
+!package.json
+!pnpm-lock.yaml
+!vite.config.js
+!src/**
+!docker/nginx.conf
+!docs/**
+docs/site

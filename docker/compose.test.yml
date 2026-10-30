@@ -1,0 +1,16 @@
+name: react-slides-test
+
+services:
+  test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: test
+    platform: linux/amd64
+    init: true
+    ipc: host
+    environment:
+      CI: ${CI:-}
+    volumes:
+      - ..:/app
+      - /app/node_modules

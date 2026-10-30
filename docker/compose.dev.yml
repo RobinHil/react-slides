@@ -1,0 +1,42 @@
+name: react-slides-dev
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: dev
+    ports:
+      - "${DEV_PORT:-5173}:5173"
+    environment:
+      DOCS_SERVER: http://docs
+    develop:
+      watch:
+        - action: sync
+          path: ../src
+          target: /app/src
+        - action: sync
+          path: ../index.html
+          target: /app/index.html
+        - action: sync
+          path: ../vite.config.js
+          target: /app/vite.config.js
+        - action: rebuild
+          path: ../package.json
+        - action: rebuild
+          path: ../pnpm-lock.yaml
+
+  docs:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: docs-dev
+    develop:
+      watch:
+        - action: sync
+          path: ../docs
+          target: /docs
+          ignore:
+            - site/
+        - action: rebuild
+          path: ../docs/requirements.txt

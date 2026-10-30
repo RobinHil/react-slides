@@ -1,12 +1,5 @@
 name: Pages
 
-# Le diaporama est une application Vite entierement cliente : aucune donnee
-# distante, aucun routeur, tout est dans le bundle. Il se publie tel quel sur
-# GitHub Pages.
-#
-# Pages doit etre regle sur "GitHub Actions" dans Settings > Pages. L'etape
-# configure-pages lit cette configuration au lieu de deviner une adresse, ce
-# qui fait qu'un domaine personnalise fonctionne sans toucher a ce fichier.
 on:
   push:
     branches: [main]
@@ -22,69 +15,115 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Construit le site et prouve qu'il vaut d'etre publie. Une pull request
-  # s'arrete ici : rien n'est publie depuis une branche.
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the test container
+        run: docker compose -f docker/compose.test.yml build test
+
+      - name: Run the unit, end-to-end and visual tests
+        env:
+          CI: "true"
+        run: docker compose -f docker/compose.test.yml run --rm test
+
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 14
+
   build:
     name: Build and check
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    outputs:
+      decks: ${{ steps.assert.outputs.decks }}
     steps:
       - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
 
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
-      - run: npm run lint
+      - run: pnpm lint
 
-      # Ou le site va vivre, demande a Pages plutot qu'ecrit en dur : la reponse
-      # est juste pour un site de projet, un site utilisateur et un domaine
-      # personnalise. base_path vaut "/react-slides" ou "" (site utilisateur),
-      # jamais "/", d'ou la normalisation vers une valeur terminee par un slash
-      # que Vite attend.
       - uses: actions/configure-pages@v6
         id: pages
 
       - name: Build the static site
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
           set -euo pipefail
           base="${BASE_PATH%/}/"
           echo "base: $base"
-          npx vite build --base="$base"
+          SITE_URL="${BASE_URL%/}/" pnpm exec vite build --base="$base"
 
-      # Ce que le build est cense avoir produit, verifie plutot que suppose.
-      # Le point fragile est chat.jpg : les diapositives le designent par un
-      # chemin absolu, et c'est le composant Image qui le resout contre la base
-      # du build. Si cette resolution disparait, l'image tombe en 404 sur Pages
-      # alors qu'elle continue de s'afficher en developpement.
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: docs/requirements.txt
+
+      - run: pip install -r docs/requirements.txt
+
+      - name: Build the documentation
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: SITE_URL="${BASE_URL%/}/" pnpm docs:build
+
       - name: Assert the build is complete
+        id: assert
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
           set -euo pipefail
-          cd dist
           base="${BASE_PATH%/}/"
+          decks=$(find src/decks -mindepth 2 -maxdepth 2 -name Deck.jsx | cut -d/ -f3 | sort | tr '\n' ' ')
+          test -n "$decks" || { echo "no deck in src/decks"; exit 1; }
+          echo "decks: $decks"
+          cd dist
 
-          for file in index.html favicon.svg chat.jpg; do
-            test -f "$file" || { echo "missing: $file"; exit 1; }
-          done
-
+          test -f index.html || { echo "missing: index.html"; exit 1; }
           grep -q "<title>React Slides</title>" index.html
+          grep -q 'rel="icon"' index.html || { echo "missing: favicon link"; exit 1; }
+          grep -rq "$base" assets/*.js || { echo "base $base missing from the bundle"; exit 1; }
 
-          # La base reelle est bien compilee dans le bundle : c'est elle qui
-          # prefixe les chemins d'images a l'execution.
-          grep -rq "$base" assets/*.js || { echo "base $base absente du bundle"; exit 1; }
-
-          for asset in $(grep -oE "(src|href)=\"[^\"]*assets/[^\"]*\"" index.html | cut -d'"' -f2); do
-            relative=".${asset#"${base%/}"}"
-            test -f "$relative" || { echo "dangling asset: $asset"; exit 1; }
+          for deck in $decks; do
+            page="$deck/index.html"
+            test -f "$page" || { echo "missing: $page"; exit 1; }
+            grep -q "<meta name=\"deck\" content=\"$deck\"" "$page" || { echo "missing: deck meta in $page"; exit 1; }
+            grep -q 'property="og:image"' "$page" || { echo "missing: og:image in $page"; exit 1; }
+            test -s "$deck/preview.png" || { echo "missing: $deck/preview.png"; exit 1; }
           done
 
+          for page in index.html */index.html; do
+            for asset in $(grep -oE "(src|href)=\"[^\"]*assets/[^\"]*\"" "$page" | cut -d'"' -f2); do
+              relative=".${asset#"${base%/}"}"
+              test -f "$relative" || { echo "dangling asset in $page: $asset"; exit 1; }
+            done
+          done
+
+          for page in docs/index.html docs/en/index.html docs/fr/index.html; do
+            test -f "$page" || { echo "missing: $page"; exit 1; }
+          done
+          grep -q '<link rel="canonical" href="'"$BASE_URL" docs/en/index.html || { echo "documentation not built for $BASE_URL"; exit 1; }
+
+          echo "decks=$decks" >> "$GITHUB_OUTPUT"
           echo "dist is complete:"
           du -sh .
 
@@ -92,13 +131,10 @@ jobs:
         with:
           path: dist
 
-  # Publie ce que le build a verifie. Pages exige ces permissions et cet
-  # environnement ; le groupe de concurrence est celui que partagent les
-  # deploiements Pages, et il n'annule pas un deploiement en cours.
   deploy:
     name: Deploy to GitHub Pages
     if: github.event_name != 'pull_request'
-    needs: build
+    needs: [test, build]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -116,19 +152,17 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v5
 
-  # Repose les memes questions au site publie, par le reseau. C'est la seule
-  # etape qui exerce le vrai chemin de base, donc la seule qui verifie que
-  # l'image des diapositives est reellement atteignable.
   verify:
     name: Verify what is published
     if: github.event_name != 'pull_request'
-    needs: deploy
+    needs: [build, deploy]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Fetch the published page
+      - name: Fetch the published pages
         env:
           SITE: ${{ needs.deploy.outputs.page_url }}
+          DECKS: ${{ needs.build.outputs.decks }}
         run: |
           set -euo pipefail
           site="${SITE%/}"
@@ -141,6 +175,22 @@ jobs:
           done
 
           grep -q "<title>React Slides</title>" /tmp/index.html
-          curl -fsS -o /dev/null "$site/chat.jpg"
+          origin=$(echo "$site" | grep -oE "^https?://[^/]+")
+          script=$(grep -oE "src=\"[^\"]*assets/[^\"]*\.js\"" /tmp/index.html | head -1 | cut -d'"' -f2)
+          curl -fsS -o /dev/null "$origin$script"
+
+          for language in en fr; do
+            curl -fsS "$site/docs/$language/" -o /tmp/docs.html
+            grep -q "<html lang=\"$language\"" /tmp/docs.html || { echo "wrong documentation page for $language"; exit 1; }
+            echo "verified $site/docs/$language/"
+          done
+
+          for deck in $DECKS; do
+            curl -fsS "$site/$deck/" -o /tmp/deck.html
+            grep -q "<meta name=\"deck\" content=\"$deck\"" /tmp/deck.html || { echo "wrong page for $deck"; exit 1; }
+            image=$(grep -oE 'property="og:image" content="[^"]*"' /tmp/deck.html | cut -d'"' -f4)
+            curl -fsS -o /dev/null "$image" || { echo "unreachable preview for $deck: $image"; exit 1; }
+            echo "verified $site/$deck/"
+          done
 
           echo "verified $site"

@@ -1,15 +1,22 @@
-import FontAwesomeIcon from './FontAwesomeIcon.jsx';
+import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
+import ToolbarButton from './ToolbarButton.jsx';
+import Icon from './Icon.jsx';
+import { useLabels } from './hooks.js';
 import { useFullScreen } from '../contexts/FullScreen.context.jsx';
 
+/** Enters or leaves full screen. */
 function FullScreenButton() {
-    const { toggleFullScreen } = useFullScreen();
+    const { toggleFullScreen, isFullScreen } = useFullScreen();
+    const text = useLabels();
 
     return (
-        <div className="relative inline-block">
-            <button onClick={toggleFullScreen} className="text-gray-600 transition ease-in-out delay-50 hover:text-gray-700 hover:bg-gray-300 py-2 px-3 rounded-full outline-none">
-                <FontAwesomeIcon icon="fa-expand" />
-            </button>
-        </div>
+        <ToolbarButton
+            icon={<Icon icon={isFullScreen ? faCompress : faExpand} />}
+            label={isFullScreen ? text.exitFullScreen : text.fullScreen}
+            onClick={toggleFullScreen}
+            shortcut="f"
+            align="right"
+        />
     );
 }
 

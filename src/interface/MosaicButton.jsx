@@ -1,29 +1,32 @@
-import { useState } from 'react';
-import FontAwesomeIcon from './FontAwesomeIcon.jsx';
-import { useMosaic } from '../contexts/Mosaic.context.jsx';
+import ToolbarButton from './ToolbarButton.jsx';
+import { useLabels } from './hooks.js';
+import { usePanels } from '../contexts/Panels.context.jsx';
 
-function MosaicButton() {
-    const { isVisible, toggleVisible } = useMosaic();
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleMouseHover = () => {
-        setIsHovered(!isHovered);
-    };
-    
+/** Icon of four rounded squares standing for the mosaic. */
+function MosaicIcon() {
     return (
-        <div className="relative inline-block">
-            <button onClick={toggleVisible} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover} className="text-gray-600 transition ease-in-out delay-50 hover:text-gray-700 hover:bg-gray-300 py-2 px-3 rounded-full outline-none">
-                <FontAwesomeIcon icon="fa-list-ol" />
-            </button>
-            {isHovered && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded-md bg-opacity-75">
-                    {isVisible
-                        ? "Hide mosaic"
-                        : "Show mosaic"
-                    }
-                </div>
-            )}
-        </div>
+        <svg viewBox="0 0 20 20" className="w-5 h-5" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="1" width="8" height="8" rx="2" />
+            <rect x="11" y="1" width="8" height="8" rx="2" />
+            <rect x="1" y="11" width="8" height="8" rx="2" />
+            <rect x="11" y="11" width="8" height="8" rx="2" />
+        </svg>
+    );
+}
+
+/** Opens or closes the full screen mosaic of all slides. */
+function MosaicButton() {
+    const { isMosaicVisible, toggleMosaic } = usePanels();
+    const text = useLabels();
+
+    return (
+        <ToolbarButton
+            icon={<MosaicIcon />}
+            label={isMosaicVisible ? text.hideMosaic : text.showMosaic}
+            onClick={toggleMosaic}
+            shortcut="m"
+            align="left"
+        />
     );
 }
 

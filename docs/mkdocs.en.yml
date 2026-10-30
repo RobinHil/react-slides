@@ -1,0 +1,32 @@
+INHERIT: mkdocs.base.yml
+site_url: !ENV [SITE_URL, ""]
+site_description: User guide of React Slides, the presentation framework for React.
+docs_dir: en
+site_dir: site/en
+theme:
+  language: en
+nav:
+  - Home: index.md
+  - Using the interface:
+      - interface/index.md
+      - interface/home-page.md
+      - interface/navigation.md
+      - interface/overviews.md
+      - interface/notes.md
+      - interface/full-screen.md
+      - interface/presenter.md
+      - interface/pdf.md
+      - interface/shortcuts.md
+  - Building presentations:
+      - building/index.md
+      - building/decks.md
+      - building/slides.md
+      - building/themes.md
+      - building/text.md
+      - building/layouts.md
+      - building/media.md
+      - building/code-and-markdown.md
+      - building/diagrams-and-formulas.md
+      - building/steps-and-transitions.md
+      - building/corners-and-notes.md
+      - building/deployment.md

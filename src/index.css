@@ -1,5 +1,74 @@
-@import '@fortawesome/fontawesome-free/css/all.css';
+@import 'tailwindcss' theme(static);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/inter/wght-italic.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/400-italic.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/700-italic.css';
+@import '@fontsource-variable/montserrat/wght.css';
+@import '@fontsource-variable/montserrat/wght-italic.css';
+@import '@fontsource-variable/playfair-display/wght.css';
+@import '@fontsource-variable/playfair-display/wght-italic.css';
+@import '@fontsource-variable/merriweather/wght.css';
+@import '@fontsource-variable/merriweather/wght-italic.css';
+@import '@fontsource-variable/lora/wght.css';
+@import '@fontsource-variable/lora/wght-italic.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght-italic.css';
+@import '@fontsource-variable/caveat/wght.css';
+
+@custom-variant short (@media (max-height: 500px));
+@custom-variant phone (@media (max-width: 639px) and (orientation: portrait));
+@custom-variant page-old (&::view-transition-old(root));
+@custom-variant page-new (&::view-transition-new(root));
+@custom-variant slide-old (&::view-transition-old(slide));
+@custom-variant slide-new (&::view-transition-new(slide));
+@custom-variant slide-frame (&::view-transition-image-pair(slide));
+@custom-variant forward (&[data-transition=slide-forward]);
+@custom-variant backward (&[data-transition=slide-backward]);
+
+@theme static {
+    --font-inter: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-montserrat: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-playfair-display: "Playfair Display Variable", ui-serif, Georgia, serif;
+    --font-merriweather: "Merriweather Variable", ui-serif, Georgia, serif;
+    --font-lora: "Lora Variable", ui-serif, Georgia, serif;
+    --font-jetbrains-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+    --font-caveat: "Caveat Variable", cursive;
+}
+
+@theme {
+    --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+    --animate-fade-in: fade-in 400ms var(--ease-fluid) both;
+    --animate-fade-out: fade-out 400ms var(--ease-fluid) both;
+    --animate-slide-in-next: slide-in-next 500ms var(--ease-fluid) both;
+    --animate-slide-out-next: slide-out-next 500ms var(--ease-fluid) both;
+    --animate-slide-in-previous: slide-in-previous 500ms var(--ease-fluid) both;
+    --animate-slide-out-previous: slide-out-previous 500ms var(--ease-fluid) both;
+
+    @keyframes fade-in {
+        from { opacity: 0; }
+    }
+    @keyframes fade-out {
+        to { opacity: 0; }
+    }
+    @keyframes slide-in-next {
+        from { translate: 100% 0; }
+    }
+    @keyframes slide-out-next {
+        to { translate: -100% 0; }
+    }
+    @keyframes slide-in-previous {
+        from { translate: -100% 0; }
+    }
+    @keyframes slide-out-previous {
+        to { translate: 100% 0; }
+    }
+}
+
+@theme inline {
+    --color-accent: var(--accent);
+}

@@ -1,0 +1,125 @@
+name: react-slides
+
+x-hardened: &hardened
+  restart: unless-stopped
+  read_only: true
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: "3"
+
+services:
+  socket-proxy:
+    <<: *hardened
+    image: wollomatic/socket-proxy:1.13.2
+    user: "65534:${DOCKER_GID:?set DOCKER_GID in .env}"
+    command:
+      - -loglevel=warn
+      - -listenip=0.0.0.0
+      - -allowfrom=traefik
+      - -allowGET=(/v1\..{1,2})?/(_ping|version|containers/.*|events.*)
+      - -allowHEAD=(/v1\..{1,2})?/_ping
+      - -watchdoginterval=3600
+      - -stoponwatchdog
+      - -shutdowngracetime=5
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - socket
+    mem_limit: 64m
+
+  traefik:
+    <<: *hardened
+    image: dhi.io/traefik:3.7.16-alpine3.24
+    depends_on:
+      - socket-proxy
+    command:
+      - --global.checkNewVersion=false
+      - --global.sendAnonymousUsage=false
+      - --log.level=WARN
+      - --accessLog=true
+      - --ping=true
+      - --entryPoints.web.address=:80
+      - --entryPoints.web.http.redirections.entryPoint.to=websecure
+      - --entryPoints.web.http.redirections.entryPoint.scheme=https
+      - --entryPoints.websecure.address=:443
+      - --entryPoints.websecure.http3=true
+      - --entryPoints.websecure.http.tls.certResolver=letsencrypt
+      - --providers.docker.endpoint=tcp://socket-proxy:2375
+      - --providers.docker.exposedByDefault=false
+      - --providers.docker.network=react-slides-web
+      - --certificatesResolvers.letsencrypt.acme.email=${ACME_EMAIL:?set ACME_EMAIL in .env}
+      - --certificatesResolvers.letsencrypt.acme.storage=/plugins-storage/acme.json
+      - --certificatesResolvers.letsencrypt.acme.tlsChallenge=true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - acme:/plugins-storage
+    networks:
+      - web
+      - socket
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    mem_limit: 256m
+
+  app:
+    <<: *hardened
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: prod
+      args:
+        SITE_URL: https://${DOMAIN:?set DOMAIN in .env}/
+    tmpfs:
+      - /tmp
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.react-slides.rule=Host(`${DOMAIN:?set DOMAIN in .env}`)
+      - traefik.http.routers.react-slides.entryPoints=websecure
+      - traefik.http.routers.react-slides.middlewares=security-headers,compress
+      - traefik.http.routers.react-slides-docs.rule=Host(`${DOMAIN:?set DOMAIN in .env}`) && PathPrefix(`/docs`)
+      - traefik.http.routers.react-slides-docs.entryPoints=websecure
+      - traefik.http.routers.react-slides-docs.service=react-slides
+      - traefik.http.routers.react-slides-docs.middlewares=security-headers-docs,compress
+      - traefik.http.services.react-slides.loadBalancer.server.port=8080
+      - traefik.http.services.react-slides.loadBalancer.healthCheck.path=/health
+      - traefik.http.services.react-slides.loadBalancer.healthCheck.interval=30s
+      - traefik.http.middlewares.security-headers.headers.stsSeconds=63072000
+      - traefik.http.middlewares.security-headers.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.security-headers.headers.stsPreload=true
+      - traefik.http.middlewares.security-headers.headers.frameDeny=true
+      - traefik.http.middlewares.security-headers.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.security-headers.headers.referrerPolicy=strict-origin-when-cross-origin
+      - traefik.http.middlewares.security-headers.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), payment=(), usb=()
+      - traefik.http.middlewares.security-headers.headers.contentSecurityPolicy=default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.ytimg.com data:; media-src 'self'; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; font-src 'self' data:; connect-src 'self'
+      - traefik.http.middlewares.security-headers-docs.headers.stsSeconds=63072000
+      - traefik.http.middlewares.security-headers-docs.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.security-headers-docs.headers.stsPreload=true
+      - traefik.http.middlewares.security-headers-docs.headers.frameDeny=true
+      - traefik.http.middlewares.security-headers-docs.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.security-headers-docs.headers.referrerPolicy=strict-origin-when-cross-origin
+      - traefik.http.middlewares.security-headers-docs.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), payment=(), usb=()
+      - traefik.http.middlewares.security-headers-docs.headers.contentSecurityPolicy=default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com
+      - traefik.http.middlewares.compress.compress.encodings=zstd,br,gzip
+    mem_limit: 64m
+
+networks:
+  web:
+    name: react-slides-web
+  socket:
+    internal: true
+
+volumes:
+  acme:

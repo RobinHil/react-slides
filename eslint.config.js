@@ -1,38 +1,30 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-    { ignores: ['dist'] },
+    { ignores: ["dist", "docs/site", "test-results", "playwright-report", "blob-report"] },
     js.configs.recommended,
-    react.configs.flat.recommended,
-    react.configs.flat['jsx-runtime'],
-    reactHooks.configs.flat['recommended-latest'],
+    reactHooks.configs.flat["recommended-latest"],
+    reactRefresh.configs.vite,
     {
-        files: ['**/*.{js,jsx}'],
+        files: ["**/*.{js,jsx}"],
         languageOptions: {
-            ecmaVersion: 'latest',
-            sourceType: 'module',
             globals: globals.browser,
-            parserOptions: { ecmaFeatures: { jsx: true } },
-        },
-        settings: { react: { version: 'detect' } },
-        plugins: { 'react-refresh': reactRefresh },
-        rules: {
-            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-            // Le projet est en JavaScript sans PropTypes : les composants documentent
-            // leurs props par leur signature de destructuration.
-            'react/prop-types': 'off',
-            // Les apostrophes typographiques sont ecrites telles quelles dans les slides.
-            'react/no-unescaped-entities': 'off',
-        },
+            parserOptions: { ecmaFeatures: { jsx: true } }
+        }
     },
     {
-        // Les fichiers de contexte exportent volontairement un provider et son hook
-        // d'acces cote a cote ; seul le rafraichissement a chaud y perd un peu.
-        files: ['src/contexts/*.jsx'],
-        rules: { 'react-refresh/only-export-components': 'off' },
+        files: ["vite.config.js", "scripts/**/*.{js,mjs}"],
+        languageOptions: { globals: globals.node }
     },
+    {
+        files: ["playwright.config.js", "vitest.config.js", "tests/**/*.{js,jsx,mjs}"],
+        languageOptions: { globals: { ...globals.node, ...globals.browser } }
+    },
+    {
+        files: ["src/contexts/*.jsx"],
+        rules: { "react-refresh/only-export-components": "off" }
+    }
 ];
