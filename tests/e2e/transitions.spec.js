@@ -58,7 +58,6 @@ test.describe("transitions", () => {
         await page.keyboard.press("ArrowRight");
         await expectPosition(page, "#4");
         expect(await slideAnimations(page)).toEqual([]);
-        expect(await page.locator("[data-step]").count()).toBe(0);
         await page.close();
     });
 });

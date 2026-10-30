@@ -62,6 +62,9 @@ test.describe("phone", () => {
         await swipe(page, -10);
         await page.waitForTimeout(300);
         await expectPosition(page, "#4");
+        for (const distance of [-200, -200, -200, 200])
+            await swipe(page, distance);
+        await expectPosition(page, "#6");
     });
 
     test("answers no shortcut of a hidden button", async ({ page }) => {
